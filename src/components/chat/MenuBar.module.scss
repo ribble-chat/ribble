@@ -1,0 +1,31 @@
+#container {
+  margin-bottom: auto;
+  height: var(--top-bar-height);
+  color: white;
+  background-color: var(--bar-bg);
+  display: flex;
+  align-items: center;
+}
+
+#groupTitle {
+  display: flex;
+  padding-left: 0.05em;
+}
+
+#groupName {
+  padding-top: 0.4em;
+  font-size: 1.1em;
+  font-weight: bold;
+  color: white;
+}
+
+#utilButtons {
+  margin-left: auto;
+  margin-right: 0.2em;
+}
+
+.groupPicture {
+  width: 2.7em;
+  height: 2.7em;
+  padding: 1em;
+}

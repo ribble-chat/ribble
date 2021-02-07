@@ -1,0 +1,11 @@
+#container {
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+}
+
+#background {
+  background-color: var(--chat-box-bg);
+  height: 100vh;
+  width: 100%;
+}

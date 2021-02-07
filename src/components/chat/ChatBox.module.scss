@@ -1,0 +1,24 @@
+#container {
+  background-color: var(--chat-box-bg);
+  display: flex;
+  flex: 1;
+  flex-direction: column-reverse;
+  overflow-y: scroll;
+  position: relative;
+  box-sizing: border-box;
+  padding: 0.6em;
+}
+
+.you {
+  justify-content: end;
+  justify-items: end;
+}
+
+.other {
+  justify-items: start;
+}
+
+.message {
+  display: grid;
+  grid-template-columns: 70%;
+}

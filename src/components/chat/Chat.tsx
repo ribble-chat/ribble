@@ -1,10 +1,16 @@
 import React from "react";
+import MenuBar from "./MenuBar";
 import ChatBox from "./ChatBox";
+import ChatBar from "./ChatBar";
+import styles from "./Chat.module.scss";
+
+const me = "Jennifer";
 
 const Chat: React.FC = () => {
   return (
-    <div>
-      <ChatBox me="me" />
+    <div id={styles.container}>
+      <MenuBar />
+      <ChatBox me={me} />
     </div>
   );
 };

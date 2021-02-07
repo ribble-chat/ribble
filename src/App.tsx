@@ -1,9 +1,10 @@
-import Main from "./Main";
 import "./App.css";
+import { Main } from "./views";
+import styles from "./App.module.scss";
 
 function App() {
   return (
-    <div className="App">
+    <div id={styles.container}>
       <Main />
     </div>
   );

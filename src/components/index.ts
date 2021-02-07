@@ -1,1 +1,2 @@
-export { default as SidePanel } from "./SidePanel";
+export * from "./chat";
+export * from "./sidepanel";
