@@ -1,5 +1,5 @@
 import { useRecoilValue } from "recoil";
-import { groupState } from "../../recoil";
+import { groupState } from "state";
 import styles from "./MenuBar.module.scss";
 
 const MenuBar: React.FC = () => {

@@ -1,6 +1,6 @@
 import { useRecoilValue } from "recoil";
-import { userState } from "../../recoil";
-import type { Msg } from "../../types";
+import { userState } from "state";
+import type { Msg } from "types";
 import styles from "./Message.module.scss";
 
 type Props = {
@@ -18,7 +18,3 @@ const Message: React.FC<Props> = ({ message }) => {
 };
 
 export default Message;
-
-//className={`${styles.message} ${
-//me === message.from ? styles.self : styles.other
-//}`}

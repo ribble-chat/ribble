@@ -1,6 +1,6 @@
 import Message from "./Message";
 import styles from "./ChatBox.module.scss";
-import type { Msg } from "../../types";
+import type { Msg } from "types";
 
 type Props = {
   me: string;

@@ -1,6 +1,6 @@
 import { useRecoilState } from "recoil";
-import { groupState } from "../../recoil";
-import type { Group } from "../../types";
+import { groupState } from "state";
+import type { Group } from "types";
 import styles from "./GroupItem.module.scss";
 
 type Props = {

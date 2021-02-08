@@ -1,8 +1,8 @@
 import styles from "./GroupsList.module.scss";
 import GroupItem from "./GroupItem";
-import * as api from "../../api";
-import type { Group } from "../../types";
-import { groupState } from "../../recoil";
+import * as api from "api";
+import type { Group } from "types";
+import { groupState } from "state";
 import { useRecoilState } from "recoil";
 
 let groups: Group[] = [];

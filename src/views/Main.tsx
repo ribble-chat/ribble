@@ -1,6 +1,6 @@
-import { SidePanel, Chat } from "../components";
+import { SidePanel, Chat } from "components";
 import { useRecoilValue } from "recoil";
-import { groupState } from "../recoil";
+import { groupState } from "state";
 import styles from "./Main.module.scss";
 
 const Main = () => {

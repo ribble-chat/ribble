@@ -1,5 +1,5 @@
 import { atom } from "recoil";
-import type { User, Group } from "../types";
+import type { User, Group } from "types";
 
 export const USER_STATE: string = "userState";
 export const GROUP_STATE: string = "groupState";
