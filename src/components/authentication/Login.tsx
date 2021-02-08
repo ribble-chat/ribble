@@ -10,15 +10,15 @@ const Login: React.FC = () => {
 
   const [currentUser, setUser] = useRecoilState(userState);
 
-  function handleLogin(e: Event) {
+  function handleLogin(e: any) {
+    e.preventDefault();
     api.login(username, password);
     setUser({ name: "Jennifer", id: 1 });
-    e.preventDefault();
   }
 
   return (
     <main>
-      <form id={styles.loginForm} onSubmit={() => handleLogin}>
+      <form id={styles.loginForm} onSubmit={handleLogin}>
         <input
           value={username}
           onChange={(e) => setUsername(e.target.value)}
