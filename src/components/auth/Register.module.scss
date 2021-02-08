@@ -17,7 +17,11 @@
   padding: 0.6em 1em;
 }
 
-#registerForm input[type="submit"] {
+#submitButton {
   color: white;
   background-color: var(--ribble-accent-col);
+}
+
+#submitButton:hover {
+  background-color: var(--ribble-accent-light);
 }

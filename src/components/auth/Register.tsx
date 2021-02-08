@@ -46,7 +46,7 @@ const Register: React.FC = () => {
         value={password}
         onChange={e => setPassword(e.target.value)}
       />
-      <input type="submit" value="REGISTER" />
+      <input id={styles.submitButton} type="submit" value="REGISTER" />
     </form>
   );
 };

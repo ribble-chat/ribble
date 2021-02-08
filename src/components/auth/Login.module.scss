@@ -21,3 +21,7 @@
   color: white;
   background-color: var(--ribble-accent-col);
 }
+
+#submitButton:hover {
+  background-color: var(--ribble-accent-light);
+}
