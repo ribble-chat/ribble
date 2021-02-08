@@ -1,6 +1,9 @@
 import styles from "./GroupsList.module.scss";
 import GroupItem from "./GroupItem";
+import * as api from "../../api";
 import type { Group } from "../../types";
+import { groupState } from "../../recoil";
+import { useRecoilState } from "recoil";
 
 let groups: Group[] = [];
 
@@ -8,14 +11,16 @@ let count = 1;
 const groupName: string = "group";
 const testPicture: string = "nibbles.png";
 
-function handleNewGroup() {
-  //let name = `${groupName} ${count++}`;
-  //api.joinGroup(name, "test user");
-  //currentGroup.set({ name, picture: testPicture });
-  //groups = [{ name, picture: testPicture }, ...groups];
-}
-
 const GroupsList: React.FC = () => {
+  const [group, setGroup] = useRecoilState(groupState);
+
+  function handleNewGroup() {
+    let name = `${groupName} ${count++}`;
+    api.joinGroup(name, "test user");
+    setGroup({ name, picture: testPicture, id: count });
+    groups = [{ name, picture: testPicture, id: count }, ...groups];
+  }
+
   return (
     <>
       <header id={styles.utils}>
@@ -33,9 +38,9 @@ const GroupsList: React.FC = () => {
         </button>
       </header>
 
-      <div id="listContainer">
+      <div id={styles.listContainer}>
         {groups.map((group) => (
-          <GroupItem group={group} />
+          <GroupItem key={group.id} group={group} />
         ))}
       </div>
     </>

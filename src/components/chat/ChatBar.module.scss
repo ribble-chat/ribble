@@ -1,0 +1,33 @@
+#chatForm {
+  grid-area: chat-form;
+  width: 100%;
+  padding-left: 1em;
+  margin: 1em 0;
+  border-radius: 0.5em;
+  outline: none;
+  border: none;
+  background-color: var(--form-bg);
+  color: white;
+  font-size: 1em;
+}
+
+#container {
+  margin-top: auto;
+  padding-left: 1em;
+  display: flex;
+  background-color: var(--bar-bg);
+  height: 70px;
+}
+
+#emojiButton {
+  width: 2.5em;
+  height: 2.5em;
+  padding: 1em;
+  border-radius: 50%;
+  transition: filter 0.2s;
+  filter: brightness(100%);
+}
+
+#emojiButton:hover {
+  filter: brightness(120%);
+}

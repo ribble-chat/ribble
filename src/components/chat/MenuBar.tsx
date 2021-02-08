@@ -1,19 +1,22 @@
-import type { Group } from "../../types";
+import { useRecoilValue } from "recoil";
+import { groupState } from "../../recoil";
 import styles from "./MenuBar.module.scss";
 
-const currentGroup: Group = { name: "test group", picture: "nibbles.png" };
 const MenuBar: React.FC = () => {
-  //todo if current group
+  const group = useRecoilValue(groupState);
   return (
     <header id={styles.container}>
-      <div id={styles.groupTitle}>
-        <img
-          className={`groupPicture ${styles.groupPicture}`}
-          src={`./images/${currentGroup.picture}`}
-          alt="."
-        />
-        <p id={styles.groupName}>{currentGroup.name}</p>
-      </div>
+      {group && (
+        <div id={styles.groupTitle}>
+          <img
+            className={`groupPicture ${styles.groupPicture}`}
+            src={`./images/${group.picture}`}
+            alt="."
+          />
+          <p id={styles.groupName}>{group.name}</p>
+        </div>
+      )}
+
       <nav id={styles.utilButtons}>
         <button className="iconButton">
           <i className="fas fa-phone-alt" />

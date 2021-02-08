@@ -1,1 +1,2 @@
-export type { GroupItem as Group, Msg } from "./chat";
+export type { Group, Msg } from "./chat";
+export type { User } from "./user";

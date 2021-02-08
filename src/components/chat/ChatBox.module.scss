@@ -8,17 +8,3 @@
   box-sizing: border-box;
   padding: 0.6em;
 }
-
-.you {
-  justify-content: end;
-  justify-items: end;
-}
-
-.other {
-  justify-items: start;
-}
-
-.message {
-  display: grid;
-  grid-template-columns: 70%;
-}

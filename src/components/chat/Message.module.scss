@@ -1,4 +1,4 @@
-.message {
+.messageText {
   color: var(--message-text-col);
   background-color: var(--chat-bubble-bg);
   padding: 0.8em;
@@ -8,6 +8,17 @@
   overflow-wrap: break-word;
 }
 
-.block {
+.container {
+  display: grid;
+  grid-template-columns: 70%;
   padding-top: 0.5em;
+}
+
+.self {
+  justify-content: end;
+  justify-items: end;
+}
+
+.other {
+  justify-items: start;
 }
