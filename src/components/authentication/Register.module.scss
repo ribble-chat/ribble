@@ -1,0 +1,23 @@
+#registerForm {
+  display: flex;
+  flex-direction: column;
+  width: 15em;
+}
+
+#registerForm > input {
+  border-radius: 10px;
+  padding: 0.6em;
+  margin: 1em;
+  border: none;
+  outline: none;
+}
+
+#registerForm input[type="text"],
+#registerForm input[type="password"] {
+  padding: 0.6em 1em;
+}
+
+#registerForm input[type="submit"] {
+  color: white;
+  background-color: var(--ribble-accent-col);
+}

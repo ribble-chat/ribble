@@ -1,0 +1,47 @@
+#background {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--authentication-bg);
+}
+
+#ribbleTitle {
+  color: white;
+}
+
+#navigation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#tabButtons {
+  padding: 1em;
+  display: flex;
+}
+
+#tabButtons > p {
+  color: white;
+  padding: 1em;
+  margin: 0;
+}
+
+.selectedTab {
+  text-decoration: underline;
+  text-decoration-color: var(--ribble-accent-col);
+  text-underline-offset: 0.4em;
+  text-decoration-thickness: 0.2em;
+}
+
+#formBackground {
+  height: 35em;
+  width: 25em;
+  border-radius: 10px;
+  background-color: var(--login-form-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,6 +1,8 @@
 import "./App.css";
-import { Main } from "views";
+import { Main, Authentication } from "views";
 import styles from "./App.module.scss";
+import { useRecoilValue } from "recoil";
+import { userState } from "state";
 
 function App() {
   //const [count, setCount] = useState<number>(0);
@@ -8,9 +10,10 @@ function App() {
   //setCount((count) => count + 1);
   //console.log(count);
   //}
+  const currentUser = useRecoilValue(userState);
   return (
     <div id={styles.container}>
-      <Main />
+      {currentUser ? <Main /> : <Authentication />}
     </div>
   );
 }

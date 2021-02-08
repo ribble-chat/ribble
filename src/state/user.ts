@@ -6,7 +6,7 @@ export const GROUP_STATE: string = "groupState";
 
 export const userState = atom<User | undefined>({
   key: USER_STATE,
-  default: { name: "Jennifer", id: 1 },
+  default: undefined,
 });
 
 export const groupState = atom<Group | undefined>({
