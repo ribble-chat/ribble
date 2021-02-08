@@ -1,7 +1,7 @@
 import { useState } from "react";
-import * as api from "api";
 import { useRecoilState } from "recoil";
 import { userState } from "state";
+import * as api from "api";
 import styles from "./Login.module.scss";
 
 const Login: React.FC = () => {
@@ -21,13 +21,13 @@ const Login: React.FC = () => {
       <form id={styles.loginForm} onSubmit={handleLogin}>
         <input
           value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={e => setUsername(e.target.value)}
           type="text"
           placeholder="Username/Email"
         />
         <input
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={e => setPassword(e.target.value)}
           type="password"
           placeholder="Password"
         />

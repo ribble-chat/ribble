@@ -2,10 +2,6 @@ import Message from "./Message";
 import styles from "./ChatBox.module.scss";
 import type { Msg } from "types";
 
-type Props = {
-  me: string;
-};
-
 const messages: Msg[] = [
   {
     from: "Jennifer",
@@ -97,10 +93,8 @@ const messages: Msg[] = [
 const ChatBox: React.FC = () => {
   return (
     <div id={styles.container}>
-      {messages.map((message) => (
-        <div key={message.id}>
-          <Message message={message} />
-        </div>
+      {messages.map(message => (
+        <Message key={message.id} message={message} />
       ))}
     </div>
   );

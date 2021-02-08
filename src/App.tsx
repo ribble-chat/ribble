@@ -5,11 +5,6 @@ import { useRecoilValue } from "recoil";
 import { userState } from "state";
 
 function App() {
-  //const [count, setCount] = useState<number>(0);
-  //function handleClick() {
-  //setCount((count) => count + 1);
-  //console.log(count);
-  //}
   const currentUser = useRecoilValue(userState);
   return (
     <div id={styles.container}>

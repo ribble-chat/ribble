@@ -1,5 +1,4 @@
-import { Login } from "components/authentication";
-import { Register } from "components/authentication";
+import { Login, Register } from "components/auth";
 import { useState } from "react";
 import styles from "./Authentication.module.scss";
 
