@@ -2,21 +2,14 @@ import axios from "axios";
 
 export async function login(usernameOrEmail: string, password: string) {
   try {
-    const response = await axios.post("/api/users");
+    const response = await axios.post("/api/users", {
+      usernameOrEmail,
+      password,
+    });
     console.log(response);
   } catch (err) {
     console.log(err);
   }
-
-  axios
-    .post("/api/auth", {
-      usernameOrEmail,
-      password,
-    })
-    .then(response => {
-      console.log(response);
-    })
-    .catch(err => console.log(err));
 }
 
 export async function register(
@@ -25,4 +18,17 @@ export async function register(
   firstname: string,
   lastname: string,
   password: string
-): Promise<any> {}
+) {
+  try {
+    const response = await axios.post("/api/users", {
+      email,
+      username,
+      firstname,
+      lastname,
+      password,
+    });
+    console.log(response);
+  } catch (err) {
+    console.log(err);
+  }
+}
