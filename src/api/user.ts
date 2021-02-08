@@ -1,19 +1,22 @@
 import axios from "axios";
 
 export async function login(usernameOrEmail: string, password: string) {
+  try {
+    const response = await axios.post("/api/users");
+    console.log(response);
+  } catch (err) {
+    console.log(err);
+  }
+
   axios
-    .post("/api/users", {
+    .post("/api/auth", {
       usernameOrEmail,
       password,
     })
-    .then(
-      response => {
-        console.log(response);
-      },
-      error => {
-        console.log(error);
-      }
-    );
+    .then(response => {
+      console.log(response);
+    })
+    .catch(err => console.log(err));
 }
 
 export async function register(
