@@ -4,6 +4,7 @@ import styles from "./UtilPanel.module.scss";
 
 const UtilPanel: React.FC = () => {
   const [user, setUser] = useRecoilState(userState);
+
   return (
     <aside id={styles.container}>
       <header id={styles.title}>Ribble</header>

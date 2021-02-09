@@ -11,7 +11,7 @@ const Register: React.FC = () => {
 
   function handleRegister(e: any) {
     e.preventDefault();
-    api.register(email, username, firstname, lastname, password);
+    api.register({ email, username, firstname, lastname, password });
   }
 
   return (

@@ -1,5 +1,5 @@
 export type Group = {
-  id: number;
+  guid: string;
   name: string;
   picture: string;
 };
