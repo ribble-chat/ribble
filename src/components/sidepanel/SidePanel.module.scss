@@ -1,28 +1,4 @@
 #container {
-  min-width: 12em;
-  max-width: 12em;
   height: 100vh;
   display: flex;
-  flex: 1;
-  flex-direction: column;
-  background-color: var(--side-panel-bg);
-}
-
-#logoutButton {
-  margin-left: auto;
-  margin-top: 0.3em;
-  font-size: 0.9em;
-}
-
-#title {
-  display: flex;
-  align-items: center;
-}
-
-#title > p {
-  margin: 0;
-  padding: 0.8em 0em 0.5em 0.8em;
-  font-size: 1em;
-  font-weight: bold;
-  color: white;
 }

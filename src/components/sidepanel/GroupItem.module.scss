@@ -2,13 +2,15 @@
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 0.3em 0 0.3em 1em;
+  padding: 0.3em 0 0.3em 0.6em;
   box-sizing: border-box;
+  border-style: none none none solid;
+  border-color: transparent;
 }
 
 .groupPicture {
-  width: 2.4em;
-  height: 2.4em;
+  width: 2.3em;
+  height: 2.3em;
 }
 
 .groupName {
@@ -19,4 +21,6 @@
 
 #selected {
   background-color: var(--selected-group-bg);
+  border-style: none none none solid;
+  border-color: var(--ribble-accent-col);
 }

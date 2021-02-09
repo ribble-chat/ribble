@@ -2,7 +2,7 @@
   grid-area: chat-form;
   width: 100%;
   padding-left: 1em;
-  margin: 1em 0;
+  margin: 0.5em 0;
   border-radius: 0.5em;
   outline: none;
   border: none;
@@ -17,6 +17,9 @@
   display: flex;
   background-color: var(--bar-bg);
   height: 70px;
+  border-style: solid none none none;
+  border-width: thin;
+  border-color: var(--chat-box-border-line-col);
 }
 
 #emojiButton {

@@ -22,10 +22,10 @@ const ChatBar: React.FC = () => {
       </button>
       <input
         value={message}
-        onChange={(e) => setMessage(e.target.value)}
+        onChange={e => setMessage(e.target.value)}
         id={styles.chatForm}
         type="text"
-        placeholder="type a message..."
+        placeholder="Type a message..."
       />
       <img
         id={styles.emojiButton}

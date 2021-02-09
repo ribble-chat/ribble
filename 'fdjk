@@ -1,3 +1,12 @@
+#container {
+  min-width: 13em;
+  max-width: 13em;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--group-panel-bg);
+}
+
 #joinGroupButton {
   padding: 0.1em 0 0 0.7em;
   font-size: 1em;
@@ -6,9 +15,13 @@
 #utils {
   display: flex;
   align-items: center;
-  height: 2em;
-  box-sizing: border-box;
-  padding: 0.2em 0.2em 0.2em 0.6em;
+  height: var(--top-bar-height);
+  min-height: var(--top-bar-height);
+  padding: 0.3em 0.2em 0.1em 0.6em;
+  background-color: var(--group-search-bg);
+  border-style: none none solid none;
+  border-width: thin;
+  border-color: var(--chat-box-border-line-col);
 }
 
 #searchBar {
@@ -16,7 +29,7 @@
   background-color: var(--search-bar-bg);
   box-sizing: border-box;
   padding: 0.2em;
-  height: 90%;
+  height: 2em;
   width: 80%;
   align-items: center;
 }
@@ -29,24 +42,20 @@
 
 #searchForm {
   outline: none;
-  border: solid;
+  border: none;
   width: 90%;
-  border-width: 0.2em;
-  border-color: black;
   background-color: var(--search-bar-bg);
-  border-color: var(--search-bar-bg);
   color: white;
 }
 
 #listContainer {
-  background-color: var(--side-panel-bg);
+  background-color: var(--group-panel-bg);
   display: flex;
   flex-direction: column;
-  height: 95%;
   width: 100%;
+  height: 100%;
   box-sizing: border-box;
   margin: 0;
-  padding-top: 0.2em;
   padding-bottom: 0.1em;
   overflow-y: overlay;
   overflow-x: hidden;

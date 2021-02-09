@@ -1,4 +1,4 @@
-import styles from "./GroupsList.module.scss";
+import styles from "./GroupsPanel.module.scss";
 import GroupItem from "./GroupItem";
 import * as api from "api";
 import type { Group } from "types";
@@ -8,7 +8,7 @@ import { useRecoilState } from "recoil";
 let groups: Group[] = [];
 
 let count = 1;
-const groupName: string = "group";
+const groupName: string = "Group";
 const testPicture: string = "nibbles.png";
 
 const GroupsList: React.FC = () => {
@@ -22,11 +22,11 @@ const GroupsList: React.FC = () => {
   }
 
   return (
-    <>
+    <section id={styles.container}>
       <header id={styles.utils}>
         <section id={styles.searchBar}>
           <i id={styles.searchIcon} className="fas fa-search" />
-          <input id={styles.searchForm} type="text" placeholder="search.." />
+          <input id={styles.searchForm} type="text" placeholder="Search.." />
         </section>
 
         <button
@@ -39,11 +39,11 @@ const GroupsList: React.FC = () => {
       </header>
 
       <div id={styles.listContainer}>
-        {groups.map((group) => (
+        {groups.map(group => (
           <GroupItem key={group.id} group={group} />
         ))}
       </div>
-    </>
+    </section>
   );
 };
 

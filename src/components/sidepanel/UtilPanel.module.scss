@@ -1,0 +1,41 @@
+#container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--util-panel-bg);
+  width: 4.5em;
+}
+
+#mainButtons {
+  padding-top: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#title {
+  height: var(--top-bar-height);
+  display: flex;
+  align-items: center;
+  color: white;
+  font-size: 0.9em;
+  font-weight: bold;
+  margin: 0;
+}
+
+.utilButton {
+  padding: 0.5em 0 0.5em 0em;
+}
+
+#selectedButton {
+  color: var(--ribble-accent-light);
+}
+
+#footerContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: auto;
+  height: 7em;
+  width: 100%;
+}

@@ -3,4 +3,7 @@
   width: 100%;
   display: flex;
   overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }

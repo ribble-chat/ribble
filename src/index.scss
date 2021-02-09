@@ -4,22 +4,27 @@ code {
 }
 
 :root {
-  --bar-bg: #1a1a1a;
-  --message-text-col: #d7d7d7;
-  --form-bg: #222222;
-  --form-place-holder-col: #9f9f9f;
-  --chat-box-bg: #343434;
-  --chat-bubble-bg: #232323;
-  --side-panel-bg: #232323;
-  --search-bar-bg: #141414;
-  --scroll-bar-col: rgba(0, 0, 0, 0.5);
-  --top-bar-height: 4.5em;
-  --selected-group-bg: #1a1a1a;
-
-  --authentication-bg: #191919;
   --ribble-accent-col: #0092ab;
   --ribble-accent-light: #2dc2db;
+
+  --authentication-bg: #191919;
   --login-form-bg: #26282a;
+
+  --util-panel-bg: #191919;
+  --group-panel-bg: #26282a;
+  --bar-bg: #1f2022;
+  --group-search-bg: #26282a;
+  --search-bar-bg: #191919;
+  --selected-group-bg: #2e3133;
+  --chat-box-bg: #1f2022;
+  --chat-bubble-bg: #2e3133;
+  --chat-box-border-line-col: #323437;
+
+  --message-text-col: #d7d7d7;
+  --form-bg: #1f2022;
+  --form-place-holder-col: #9f9f9f;
+  --scroll-bar-col: rgba(0, 0, 0, 0.5);
+  --top-bar-height: 4rem;
 }
 
 body {

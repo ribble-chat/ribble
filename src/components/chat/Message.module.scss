@@ -6,6 +6,9 @@
   border-radius: 0.5em;
   font-size: 0.9em;
   overflow-wrap: break-word;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
 }
 
 .container {
@@ -21,4 +24,8 @@
 
 .other {
   justify-items: start;
+}
+
+.self > .messageText {
+  background-color: var(--ribble-accent-col);
 }
