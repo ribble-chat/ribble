@@ -2,23 +2,22 @@ import styles from "./GroupsPanel.module.scss";
 import GroupItem from "./GroupItem";
 import * as api from "api";
 import type { Group } from "types";
-import { groupState } from "state";
-import { useRecoilState } from "recoil";
-
-let groups: Group[] = [];
-
-let count = 1;
-const groupName: string = "Group";
-const testPicture: string = "nibbles.png";
+import { groupState, userState } from "state";
+import { useRecoilState, useRecoilValue } from "recoil";
 
 const GroupsList: React.FC = () => {
-  const [group, setGroup] = useRecoilState(groupState);
+  const user = useRecoilValue(userState)!;
+  const [currentGroup, setCurrentGroup] = useRecoilState(groupState);
+
+  let groups: Group[] = [];
+
+  const testPicture: string = "nibbles.png";
 
   function handleNewGroup() {
-    let name = `${groupName} ${count++}`;
-    api.joinGroup(name, "test user");
-    setGroup({ name, picture: testPicture, id: count });
-    groups = [{ name, picture: testPicture, id: count }, ...groups];
+    const name = "todo";
+    api.createGroup({ name, userIds: [user.id] });
+    // setCurrentGroup({ name, picture: testPicture, guid: "todo" });
+    // groups = [{ name, picture: testPicture, guid: "todo1" }, ...groups];
   }
 
   return (
@@ -26,7 +25,7 @@ const GroupsList: React.FC = () => {
       <header id={styles.utils}>
         <section id={styles.searchBar}>
           <i id={styles.searchIcon} className="fas fa-search" />
-          <input id={styles.searchForm} type="text" placeholder="Search.." />
+          <input id={styles.searchForm} type="text" placeholder="Search..." />
         </section>
 
         <button
@@ -40,7 +39,7 @@ const GroupsList: React.FC = () => {
 
       <div id={styles.listContainer}>
         {groups.map(group => (
-          <GroupItem key={group.id} group={group} />
+          <GroupItem key={group.guid} group={group} />
         ))}
       </div>
     </section>

@@ -11,5 +11,5 @@ export const userState = atom<User | undefined>({
 
 export const groupState = atom<Group | undefined>({
   key: GROUP_STATE,
-  default: { name: "group 1", picture: "nibbles.png", id: 1 },
+  default: undefined,
 });
