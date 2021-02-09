@@ -28,7 +28,9 @@
   margin-right: 0.2em;
 }
 
+@import "index.scss";
 .groupPicture {
+  @extend .groupPicture;
   width: 2.3em;
   height: 2.3em;
   padding: 1em;

@@ -9,7 +9,7 @@ const MenuBar: React.FC = () => {
       {group && (
         <div id={styles.groupTitle}>
           <img
-            className={`groupPicture ${styles.groupPicture}`}
+            className={styles.groupPicture}
             src={`./images/${group.picture}`}
             alt="."
           />

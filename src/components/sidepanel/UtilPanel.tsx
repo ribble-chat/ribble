@@ -10,22 +10,19 @@ const UtilPanel: React.FC = () => {
       <header id={styles.title}>Ribble</header>
 
       <section id={styles.mainButtons}>
-        <button
-          id={styles.selectedButton}
-          className={`iconButton ${styles.utilButton}`}
-        >
+        <button id={styles.selectedButton} className={styles.utilButton}>
           <i className="far fa-comment" />
         </button>
-        <button className={`iconButton ${styles.utilButton}`}>
+        <button className={styles.utilButton}>
           <i className="far fa-user" />
         </button>
       </section>
       <footer id={styles.footerContainer}>
-        <button className={`iconButton ${styles.utilButton}`}>
+        <button className={styles.utilButton}>
           <i className="fas fa-user-cog" />
         </button>
         <button
-          className={`iconButton ${styles.utilButton}`}
+          className={styles.utilButton}
           onClick={() => setUser(undefined)}
         >
           <i className="fas fa-sign-out-alt" />

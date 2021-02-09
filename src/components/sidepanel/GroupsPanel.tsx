@@ -6,8 +6,11 @@ import { currentGroupState, userState } from "state";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { useState } from "react";
 
+const testPicture: string = "nibbles.png";
+let groups: Group[] = [];
+
+let id = 0;
 const GroupsList: React.FC = () => {
-  let id = 0;
   const user = useRecoilValue(userState)!;
   const [currentGroup, setCurrentGroup] = useRecoilState(currentGroupState);
   const [newGroupName, setNewGroupName] = useState("");
@@ -15,25 +18,28 @@ const GroupsList: React.FC = () => {
     undefined
   );
 
-  let groups: Group[] = [];
-
-  const testPicture: string = "nibbles.png";
-
-  function handleNewGroup() {
-    const name = "todo";
-    api.createGroup({ name, userIds: [user.id] });
+  function handleNewGroup(e: React.FormEvent<HTMLFormElement>) {
+    if (newGroupName === "") return;
+    e.preventDefault();
     let newGroup: Group = {
       name: newGroupName,
       picture: testPicture,
-      guid: "",
+      guid: `newGroupName${id++}`,
     };
-    setCurrentGroup(newGroup);
+    api.createGroup({ name: newGroup.name, userIds: [user.id] });
     groups = [newGroup, ...groups];
+    setCurrentGroup(newGroup);
+    setNewGroupName("");
+  }
+
+  function openGroupCreation() {
+    setPrevSelectedGroup(currentGroup);
+    setCurrentGroup(undefined);
   }
 
   function cancelCreateGroup() {
-    setCurrentGroup(prevSelectedGroup);
     setNewGroupName("");
+    setCurrentGroup(prevSelectedGroup);
   }
 
   return (
@@ -47,10 +53,7 @@ const GroupsList: React.FC = () => {
         <button
           id={styles.createGroupButton}
           className="iconButton"
-          onClick={() => {
-            setPrevSelectedGroup(currentGroup);
-            setCurrentGroup(undefined);
-          }}
+          onClick={openGroupCreation}
         >
           <i className="fas fa-plus" />
         </button>
@@ -62,23 +65,24 @@ const GroupsList: React.FC = () => {
             <form onSubmit={handleNewGroup}>
               <input
                 type="text"
-                placeholder="enter group name"
+                autoFocus
+                placeholder="Create new group..."
                 value={newGroupName}
                 onChange={e => setNewGroupName(e.target.value)}
-              ></input>
+              />
             </form>
             <button
               id={styles.cancelButton}
               className="iconButton"
               onClick={cancelCreateGroup}
             >
-              <i className="fas fa-times"></i>
+              <i className="fas fa-times" />
             </button>
           </section>
         )}
 
         {groups.map(group => (
-          <GroupItem key={id++} group={group} />
+          <GroupItem key={group.guid} group={group} />
         ))}
       </div>
     </section>
