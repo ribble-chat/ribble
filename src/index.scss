@@ -20,7 +20,7 @@ code {
   --chat-bubble-bg: #2e3133;
   --chat-box-border-line-col: #323437;
 
-  --message-text-col: #d7d7d7;
+  --message-text-col: white;
   --form-bg: #1f2022;
   --form-place-holder-col: #9f9f9f;
   --scroll-bar-col: rgba(0, 0, 0, 0.5);
@@ -33,6 +33,8 @@ body {
   height: 100%;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  scrollbar-width: thin;
+  scrollbar-color: var(--scroll-bar-col) transparent;
 }
 
 .groupPicture {
