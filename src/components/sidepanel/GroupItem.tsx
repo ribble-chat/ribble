@@ -9,10 +9,12 @@ type Props = {
 
 const GroupItem: React.FC<Props> = ({ group }) => {
   const [currentGroup, setGroup] = useRecoilState(groupState);
+  let style =
+    currentGroup && group.name === currentGroup!.name && styles.selected;
   return (
     <div
       className={styles.container}
-      id={`${group.name === currentGroup!.name && styles.selected}`}
+      id={`${style}`}
       onClick={() => setGroup(group)}
     >
       <img
