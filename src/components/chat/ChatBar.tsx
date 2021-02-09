@@ -24,25 +24,24 @@ const ChatBar: React.FC = () => {
 
   return (
     <div id={styles.container}>
-      <button id={styles.addButton} className="iconButton">
+      <button className="iconButton">
         <i className="fas fa-plus-circle" />
       </button>
       <form onSubmit={sendMessage}>
         <input
+          id={styles.chatForm}
           value={message}
           onChange={e => setMessage(e.target.value)}
-          id={styles.chatForm}
           type="text"
           placeholder={`Message ${group!.name}`}
         />
       </form>
-      <button onClick={sendMessage}>
-        <img
-          id={styles.emojiButton}
-          src={`./images/${emoji}`}
-          alt="Send emoji button"
-        />
-      </button>
+      <img
+        id={styles.emojiButton}
+        src={`./images/${emoji}`}
+        alt="Send emoji button"
+        onClick={sendMessage}
+      />
     </div>
   );
 };

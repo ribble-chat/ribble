@@ -1,25 +1,27 @@
-#chatForm {
-  grid-area: chat-form;
-  width: 100%;
-  padding-left: 1em;
-  margin: 0.5em 0;
-  border-radius: 0.5em;
-  outline: none;
-  border: none;
-  background-color: var(--form-bg);
-  color: white;
-  font-size: 1em;
-}
-
 #container {
   margin-top: auto;
   padding-left: 1em;
   display: flex;
+  align-items: center;
   background-color: var(--bar-bg);
   height: 70px;
   border-top: solid;
   border-width: thin;
   border-color: var(--chat-box-border-line-col);
+}
+
+#container form {
+  grid-area: chat-form;
+  width: 100%;
+}
+
+#chatForm {
+  outline: none;
+  border: none;
+  width: 19em;
+  background-color: var(--form-bg);
+  color: white;
+  font-size: 1em;
 }
 
 #emojiButton {
