@@ -9,7 +9,7 @@ export const userState = atom<User | undefined>({
   default: undefined,
 });
 
-export const groupState = atom<Group | undefined>({
+export const currentGroupState = atom<Group | undefined>({
   key: GROUP_STATE,
   default: undefined,
 });

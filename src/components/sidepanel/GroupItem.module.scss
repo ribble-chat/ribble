@@ -4,7 +4,7 @@
   width: 100%;
   padding: 0.3em 0 0.3em 0.7em;
   box-sizing: border-box;
-  border-style: none none none solid;
+  border-left: solid;
   border-color: transparent;
 }
 
@@ -21,6 +21,6 @@
 
 #selected {
   background-color: var(--selected-group-bg);
-  border-style: none none none solid;
+  border-left: solid;
   border-color: var(--ribble-accent-col);
 }

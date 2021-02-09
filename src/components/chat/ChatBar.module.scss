@@ -17,7 +17,7 @@
   display: flex;
   background-color: var(--bar-bg);
   height: 70px;
-  border-style: solid none none none;
+  border-top: solid;
   border-width: thin;
   border-color: var(--chat-box-border-line-col);
 }

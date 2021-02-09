@@ -7,7 +7,34 @@
   background-color: var(--group-panel-bg);
 }
 
-#joinGroupButton {
+#createGroupContainer {
+  height: 3em;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  background-color: var(--selected-group-bg);
+  border-left: solid;
+  border-color: var(--ribble-accent-col);
+}
+
+#createGroupContainer input {
+  outline: none;
+  border: none;
+  padding: 0.5em;
+  margin-left: 1em;
+}
+
+#cancelButton {
+  margin-left: auto;
+  font-size: 0.8em;
+  color: gray;
+}
+
+#cancelButton:hover {
+  color: darkgray;
+}
+
+#createGroupButton {
   padding: 0.1em 0 0 0.7em;
   font-size: 1em;
 }
@@ -19,7 +46,7 @@
   min-height: var(--top-bar-height);
   padding: 0 0.2em 0 0.6em;
   background-color: var(--group-search-bg);
-  border-style: none none solid none;
+  border-bottom: solid;
   border-width: thin;
   border-color: var(--chat-box-border-line-col);
 }

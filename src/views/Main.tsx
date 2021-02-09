@@ -1,11 +1,11 @@
 import { Chat } from "components/chat";
 import { SidePanel } from "components/sidepanel";
 import { useRecoilValue } from "recoil";
-import { groupState } from "state";
+import { currentGroupState } from "state";
 import styles from "./Main.module.scss";
 
 const Main = () => {
-  const group = useRecoilValue(groupState);
+  const group = useRecoilValue(currentGroupState);
 
   return (
     <div id={styles.container}>

@@ -1,9 +1,9 @@
 import { useRecoilValue } from "recoil";
-import { groupState } from "state";
+import { currentGroupState } from "state";
 import styles from "./MenuBar.module.scss";
 
 const MenuBar: React.FC = () => {
-  const group = useRecoilValue(groupState);
+  const group = useRecoilValue(currentGroupState);
   return (
     <header id={styles.container}>
       {group && (

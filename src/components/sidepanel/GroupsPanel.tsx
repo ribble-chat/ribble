@@ -2,12 +2,18 @@ import styles from "./GroupsPanel.module.scss";
 import GroupItem from "./GroupItem";
 import * as api from "api";
 import type { Group } from "types";
-import { groupState, userState } from "state";
+import { currentGroupState, userState } from "state";
 import { useRecoilState, useRecoilValue } from "recoil";
+import { useState } from "react";
 
 const GroupsList: React.FC = () => {
+  let id = 0;
   const user = useRecoilValue(userState)!;
-  const [currentGroup, setCurrentGroup] = useRecoilState(groupState);
+  const [currentGroup, setCurrentGroup] = useRecoilState(currentGroupState);
+  const [newGroupName, setNewGroupName] = useState("");
+  const [prevSelectedGroup, setPrevSelectedGroup] = useState<Group | undefined>(
+    undefined
+  );
 
   let groups: Group[] = [];
 
@@ -16,8 +22,18 @@ const GroupsList: React.FC = () => {
   function handleNewGroup() {
     const name = "todo";
     api.createGroup({ name, userIds: [user.id] });
-    // setCurrentGroup({ name, picture: testPicture, guid: "todo" });
-    // groups = [{ name, picture: testPicture, guid: "todo1" }, ...groups];
+    let newGroup: Group = {
+      name: newGroupName,
+      picture: testPicture,
+      guid: "",
+    };
+    setCurrentGroup(newGroup);
+    groups = [newGroup, ...groups];
+  }
+
+  function cancelCreateGroup() {
+    setCurrentGroup(prevSelectedGroup);
+    setNewGroupName("");
   }
 
   return (
@@ -29,17 +45,40 @@ const GroupsList: React.FC = () => {
         </section>
 
         <button
-          id={styles.joinGroupButton}
+          id={styles.createGroupButton}
           className="iconButton"
-          onClick={handleNewGroup}
+          onClick={() => {
+            setPrevSelectedGroup(currentGroup);
+            setCurrentGroup(undefined);
+          }}
         >
           <i className="fas fa-plus" />
         </button>
       </header>
 
       <div id={styles.listContainer}>
+        {!currentGroup && (
+          <section id={styles.createGroupContainer}>
+            <form onSubmit={handleNewGroup}>
+              <input
+                type="text"
+                placeholder="enter group name"
+                value={newGroupName}
+                onChange={e => setNewGroupName(e.target.value)}
+              ></input>
+            </form>
+            <button
+              id={styles.cancelButton}
+              className="iconButton"
+              onClick={cancelCreateGroup}
+            >
+              <i className="fas fa-times"></i>
+            </button>
+          </section>
+        )}
+
         {groups.map(group => (
-          <GroupItem key={group.guid} group={group} />
+          <GroupItem key={id++} group={group} />
         ))}
       </div>
     </section>

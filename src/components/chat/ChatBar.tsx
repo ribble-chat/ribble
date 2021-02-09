@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useRecoilValue } from "recoil";
-import { groupState, userState } from "state";
+import { currentGroupState, userState } from "state";
 import * as api from "api";
 import styles from "./ChatBar.module.scss";
 
@@ -8,9 +8,8 @@ const ChatBar: React.FC = () => {
   const emoji: string = "nibbles.png";
 
   const [message, setMessage] = useState("");
-
+  const group = useRecoilValue(currentGroupState);
   const user = useRecoilValue(userState)!;
-  const group = useRecoilValue(groupState)!;
 
   function sendMessage(e: any) {
     e.preventDefault();
@@ -18,7 +17,7 @@ const ChatBar: React.FC = () => {
     api.sendChatMessage({
       authorId: user.id,
       author: user.name,
-      groupGuid: group.guid,
+      groupGuid: group!.guid,
       content: message,
     });
   }
@@ -34,7 +33,7 @@ const ChatBar: React.FC = () => {
           onChange={e => setMessage(e.target.value)}
           id={styles.chatForm}
           type="text"
-          placeholder={`Message ${group.name}`}
+          placeholder={`Message ${group!.name}`}
         />
       </form>
       <button onClick={sendMessage}>

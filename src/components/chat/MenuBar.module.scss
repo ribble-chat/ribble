@@ -6,7 +6,7 @@
   background-color: var(--bar-bg);
   display: flex;
   align-items: center;
-  border-style: none none solid none;
+  border-bottom: solid;
   border-width: thin;
   border-color: var(--chat-box-border-line-col);
 }
