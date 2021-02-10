@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { useRecoilValue } from "recoil";
+
 import { currentGroupState, userState } from "state";
 import * as api from "api";
+
 import styles from "./ChatBar.module.scss";
+
 
 const ChatBar: React.FC = () => {
   const emoji: string = "nibbles.png";

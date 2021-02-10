@@ -1,6 +1,7 @@
 import { useRecoilValue } from "recoil";
 import { userState } from "state";
 import type { Msg } from "types";
+
 import styles from "./Message.module.scss";
 
 type Props = {

@@ -1,16 +1,69 @@
+import { useRecoilState } from "recoil";
+import { useState } from "react";
+
+import { activePageState, userState } from "state";
+import { UtilPanel } from "components";
+import { UtilButton } from "types";
+
 import { Chat } from "components/chat";
-import { SidePanel } from "components/sidepanel";
-import { useRecoilValue } from "recoil";
-import { currentGroupState } from "state";
+import { Contacts } from "components/contacts";
+import { Preferences } from "components/preferences";
+
 import styles from "./Main.module.scss";
 
 const Main = () => {
-  const group = useRecoilValue(currentGroupState);
+  const [user, setUser] = useRecoilState(userState);
+  const [activePage, setActivePage] = useRecoilState(activePageState);
+
+  const chatButton: UtilButton = {
+    page: "chat",
+    iconName: "far fa-comment",
+    handleClick: () => {
+      setActiveUtilButton(chatButton);
+      setActivePage(chatButton.page);
+    },
+    component: <Chat />,
+  };
+
+  const contactsButton: UtilButton = {
+    page: "contacts",
+    iconName: "far fa-user",
+    handleClick: () => {
+      setActiveUtilButton(contactsButton);
+      setActivePage(contactsButton.page);
+    },
+    component: <Contacts />,
+  };
+  const preferencesButton: UtilButton = {
+    page: "preferences",
+    iconName: "fas fa-user-cog",
+    handleClick: () => {
+      setActiveUtilButton(preferencesButton);
+      setActivePage(preferencesButton.page);
+    },
+    component: <Preferences />,
+  };
+  const logoutButton: UtilButton = {
+    page: undefined,
+    iconName: "fas fa-sign-out-alt",
+    handleClick: () => setUser(undefined),
+    component: undefined,
+  };
+
+  const [activeUtilButton, setActiveUtilButton] = useState(chatButton);
+
+  const mainUtilButtons: UtilButton[] = [chatButton, contactsButton];
+  const footerUtilButtons: UtilButton[] = [preferencesButton, logoutButton];
 
   return (
     <div id={styles.container}>
-      <SidePanel />
-      {group ? <Chat /> : <section id={styles.background} />}
+      <UtilPanel
+        mainUtilButtons={mainUtilButtons}
+        footerUtilButtons={footerUtilButtons}
+      />
+      <section id={styles.currentPage}>
+        {activeUtilButton && activeUtilButton.component}
+      </section>
     </div>
   );
 };

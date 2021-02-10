@@ -1,5 +1,6 @@
-import { Login, Register } from "components/auth";
 import { useState } from "react";
+import { Login, Register } from "components/auth";
+
 import styles from "./Authentication.module.scss";
 
 const Authentication: React.FC = () => {

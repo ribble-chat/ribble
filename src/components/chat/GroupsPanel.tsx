@@ -1,12 +1,14 @@
-import styles from "./GroupsPanel.module.scss";
-import GroupItem from "./GroupItem";
-import * as api from "api";
-import type { Group } from "types";
-import { currentGroupState, userState } from "state";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { useState } from "react";
 
-const testPicture: string = "nibbles.png";
+import * as api from "api";
+import GroupItem from "./GroupItem";
+import type { Group } from "types";
+import { currentGroupState, userState } from "state";
+
+import styles from "./GroupsPanel.module.scss";
+
+const testPicture: string = "default.png";
 let groups: Group[] = [];
 
 let id = 0;

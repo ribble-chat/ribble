@@ -1,6 +1,8 @@
 import { useState } from "react";
-import styles from "./Register.module.scss";
+
 import * as api from "api";
+
+import styles from "./Register.module.scss";
 
 const Register: React.FC = () => {
   const [email, setEmail] = useState("");
