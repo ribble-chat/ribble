@@ -44,10 +44,8 @@ const Main = () => {
     component: <Preferences />,
   };
   const logoutButton: UtilButton = {
-    page: undefined,
     iconName: "fas fa-sign-out-alt",
     handleClick: () => setUser(undefined),
-    component: undefined,
   };
 
   const [activeUtilButton, setActiveUtilButton] = useState(chatButton);
@@ -56,7 +54,7 @@ const Main = () => {
   const footerUtilButtons: UtilButton[] = [preferencesButton, logoutButton];
 
   return (
-    <div id={styles.container}>
+    <main id={styles.container}>
       <UtilPanel
         mainUtilButtons={mainUtilButtons}
         footerUtilButtons={footerUtilButtons}
@@ -64,7 +62,7 @@ const Main = () => {
       <section id={styles.currentPage}>
         {activeUtilButton && activeUtilButton.component}
       </section>
-    </div>
+    </main>
   );
 };
 

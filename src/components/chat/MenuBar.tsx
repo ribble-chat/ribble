@@ -1,33 +1,45 @@
 import { useRecoilValue } from "recoil";
-import { currentGroupState } from "state";
+
+import { activeChatPageState, currentGroupState } from "state";
+import { UtilButton } from "types";
+import { Page } from "types/util";
 
 import styles from "./MenuBar.module.scss";
 
-const MenuBar: React.FC = () => {
-  const group = useRecoilValue(currentGroupState);
+type Props = {
+  utilButtons: UtilButton[];
+};
+
+const MenuBar: React.FC<Props> = ({ utilButtons }) => {
+  const activeChatPage = useRecoilValue(activeChatPageState);
+
+  function checkSelected(chatPage: Page | undefined): string {
+    return chatPage === activeChatPage ? styles.selectedButton : "";
+  }
+
+  const group = useRecoilValue(currentGroupState)!;
   return (
     <header id={styles.container}>
-      {group && (
-        <div id={styles.groupTitle}>
-          <img
-            className={styles.groupPicture}
-            src={`./images/${group.picture}`}
-            alt="."
-          />
-          <p id={styles.groupName}>{group.name}</p>
-        </div>
-      )}
+      <div id={styles.groupTitle}>
+        <img
+          className={styles.groupPicture}
+          src={`./images/${group.picture}`}
+          alt="group picture"
+        />
+        <h3 id={styles.groupName}>{group.name}</h3>
+      </div>
 
       <nav id={styles.utilButtons}>
-        <button className="iconButton">
-          <i className="fas fa-phone-alt" />
-        </button>
-        <button className="iconButton">
-          <i className="fas fa-search" />
-        </button>
-        <button className="iconButton">
-          <i className="fas fa-cog" />
-        </button>
+        {utilButtons.map(({ iconName, handleClick, page }) => (
+          <button
+            key={iconName}
+            className="iconButton"
+            id={checkSelected(page)}
+            onClick={handleClick}
+          >
+            <i className={iconName} />
+          </button>
+        ))}
       </nav>
     </header>
   );

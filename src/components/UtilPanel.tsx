@@ -1,6 +1,7 @@
 import { useRecoilValue } from "recoil";
 import { activePageState } from "state";
 import { UtilButton } from "types";
+import { Page } from "types/util";
 import styles from "./UtilPanel.module.scss";
 
 type Props = {
@@ -11,10 +12,8 @@ type Props = {
 const UtilPanel: React.FC<Props> = ({ mainUtilButtons, footerUtilButtons }) => {
   const activePage = useRecoilValue(activePageState);
 
-  function checkSelected(button: UtilButton): string {
-    return activePage && button.page === activePage
-      ? styles.selectedButton
-      : "";
+  function checkSelected(page: Page | undefined): string {
+    return page === activePage ? styles.selectedButton : "";
   }
 
   return (
@@ -22,26 +21,26 @@ const UtilPanel: React.FC<Props> = ({ mainUtilButtons, footerUtilButtons }) => {
       <header id={styles.title}>Ribble</header>
 
       <section id={styles.mainButtons}>
-        {mainUtilButtons.map(button => (
+        {mainUtilButtons.map(({ iconName, handleClick, page }) => (
           <button
-            key={button.iconName}
+            key={iconName}
             className={styles.utilButton}
-            id={checkSelected(button)}
-            onClick={button.handleClick}
+            id={checkSelected(page)}
+            onClick={handleClick}
           >
-            <i className={button.iconName} />
+            <i className={iconName} />
           </button>
         ))}
       </section>
       <footer id={styles.footerContainer}>
-        {footerUtilButtons.map(button => (
+        {footerUtilButtons.map(({ iconName, handleClick, page }) => (
           <button
-            key={button.iconName}
+            key={iconName}
             className={styles.utilButton}
-            id={checkSelected(button)}
-            onClick={button.handleClick}
+            id={checkSelected(page)}
+            onClick={handleClick}
           >
-            <i className={button.iconName} />
+            <i className={iconName} />
           </button>
         ))}
       </footer>

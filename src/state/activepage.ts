@@ -1,7 +1,12 @@
 import { atom } from "recoil";
-import { MainPage } from "types/util";
+import { Page } from "types/util";
 
-export const activePageState = atom<MainPage | undefined>({
+export const activePageState = atom<Page | undefined>({
   key: "activePageState",
   default: "chat",
+});
+
+export const activeChatPageState = atom<Page | undefined>({
+  key: "activeChatPageState",
+  default: undefined,
 });

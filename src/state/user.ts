@@ -1,15 +1,12 @@
 import { atom } from "recoil";
 import type { User, Group } from "types";
 
-export const USER_STATE: string = "userState";
-export const GROUP_STATE: string = "groupState";
-
 export const userState = atom<User | undefined>({
-  key: USER_STATE,
+  key: "userState",
   default: undefined,
 });
 
 export const currentGroupState = atom<Group | undefined>({
-  key: GROUP_STATE,
+  key: "currentGroupState",
   default: undefined,
 });

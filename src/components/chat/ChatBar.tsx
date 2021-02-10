@@ -10,7 +10,7 @@ const ChatBar: React.FC = () => {
   const emoji: string = "nibbles.png";
 
   const [message, setMessage] = useState("");
-  const group = useRecoilValue(currentGroupState);
+  const group = useRecoilValue(currentGroupState)!;
   const user = useRecoilValue(userState)!;
 
   function sendMessage(e: any) {
@@ -19,7 +19,7 @@ const ChatBar: React.FC = () => {
     api.sendChatMessage({
       authorId: user.id,
       author: user.name,
-      groupGuid: group!.guid,
+      groupGuid: group.guid,
       content: message,
     });
   }
@@ -35,7 +35,7 @@ const ChatBar: React.FC = () => {
           value={message}
           onChange={e => setMessage(e.target.value)}
           type="text"
-          placeholder={`Message ${group!.name}`}
+          placeholder={`Message ${group.name}`}
         />
       </form>
       <img

@@ -28,6 +28,10 @@
   margin-right: 0.2em;
 }
 
+#selectedButton {
+  color: var(--ribble-accent-light);
+}
+
 @import "index.scss";
 .groupPicture {
   @extend .groupPicture;

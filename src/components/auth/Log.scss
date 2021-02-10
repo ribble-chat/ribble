@@ -1,0 +1,27 @@
+#loginForm {
+  display: flex;
+  flex-direction: column;
+  width: 15em;
+}
+
+#loginForm > input {
+  border-radius: 10px;
+  padding: 0.6em 0;
+  margin: 1em;
+  border: none;
+  outline: none;
+}
+
+#loginForm input[type="text"],
+#loginForm input[type="password"] {
+  padding: 0.6em 1em;
+}
+
+#submitButton {
+  color: white;
+  background-color: var(--ribble-accent-col);
+}
+
+#submitButton:hover {
+  background-color: var(--ribble-accent-light);
+}

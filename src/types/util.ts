@@ -1,10 +1,18 @@
 import { ReactElement } from "react";
 
-export type MainPage = "chat" | "contacts" | "preferences" | undefined;
+export type Page =
+  | "chat"
+  | "contacts"
+  | "preferences"
+  // right side panel in chat section
+  | "chat-call"
+  | "chat-search"
+  | "chat-preferences";
 
 export type UtilButton = {
-  page: MainPage;
   iconName: string;
   handleClick: () => void;
-  component: ReactElement | undefined;
+  component?: ReactElement;
+  page?: Page;
+  title?: string;
 };
