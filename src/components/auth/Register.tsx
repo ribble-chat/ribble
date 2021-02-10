@@ -11,7 +11,7 @@ const Register: React.FC = () => {
   const [lastname, setLastName] = useState("");
   const [password, setPassword] = useState("");
 
-  function handleRegister(e: any) {
+  function handleRegister(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     api.register({ email, username, firstname, lastname, password });
   }

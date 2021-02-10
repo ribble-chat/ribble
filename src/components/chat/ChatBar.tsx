@@ -6,7 +6,6 @@ import * as api from "api";
 
 import styles from "./ChatBar.module.scss";
 
-
 const ChatBar: React.FC = () => {
   const emoji: string = "nibbles.png";
 

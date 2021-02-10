@@ -44,12 +44,18 @@ const GroupsList: React.FC = () => {
     setCurrentGroup(prevSelectedGroup);
   }
 
+  function handleSearch(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+  }
+
   return (
     <section id={styles.container}>
       <header id={styles.utils}>
         <section id={styles.searchBar}>
           <i id={styles.searchIcon} className="fas fa-search" />
-          <input id={styles.searchForm} type="text" placeholder="Search..." />
+          <form onSubmit={handleSearch}>
+            <input id={styles.searchForm} type="text" placeholder="Search..." />
+          </form>
         </section>
 
         <button

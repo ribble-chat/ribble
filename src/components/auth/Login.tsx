@@ -12,7 +12,7 @@ const Login: React.FC = () => {
 
   const [currentUser, setUser] = useRecoilState(userState);
 
-  function handleLogin(e: any) {
+  function handleLogin(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     api.login(username, password);
     setUser({ name: "Jennifer", id: 1 });
