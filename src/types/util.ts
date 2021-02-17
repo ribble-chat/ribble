@@ -6,9 +6,3 @@ export type Page =
   | "chat-call"
   | "chat-search"
   | "chat-preferences";
-
-export type UtilButton = {
-  iconName: string;
-  handleClick: () => void;
-  page?: Page;
-};

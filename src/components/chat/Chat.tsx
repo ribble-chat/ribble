@@ -52,40 +52,37 @@ const Chat: React.FC = () => {
     preferencesButton,
   ];
 
+  const Messages = () => (
+    <main>
+      <section id={styles.chatContainer}>
+        <MenuBar utilButtons={utilButtons} />
+        <ChatBox />
+        <ChatBar />
+      </section>
+      <Switch>
+        <Route
+          path="/chat/search"
+          render={() => (
+            <ChatSidePanel title="Search Messages" component={<ChatSearch />} />
+          )}
+        />
+        <Route
+          path="/chat/preferences"
+          render={() => (
+            <ChatSidePanel
+              title="Chat Preferences"
+              component={<ChatPreferences />}
+            />
+          )}
+        />
+      </Switch>
+    </main>
+  );
+
   return (
     <article id={styles.container}>
       <GroupsPanel />
-      {currentGroup ? (
-        <>
-          <section id={styles.chatContainer}>
-            <MenuBar utilButtons={utilButtons} />
-            <ChatBox />
-            <ChatBar />
-          </section>
-          <Switch>
-            <Route
-              path="/chat/search"
-              render={() => (
-                <ChatSidePanel
-                  title="Search Messages"
-                  component={<ChatSearch />}
-                />
-              )}
-            />
-            <Route
-              path="/chat/preferences"
-              render={() => (
-                <ChatSidePanel
-                  title="Chat Preferences"
-                  component={<ChatPreferences />}
-                />
-              )}
-            />
-          </Switch>
-        </>
-      ) : (
-        <section id={styles.background} />
-      )}
+      {currentGroup ? <Messages /> : <section id={styles.background} />}
     </article>
   );
 };

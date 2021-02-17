@@ -7,8 +7,8 @@ import { activeChatPageState } from "state";
 import styles from "./ChatSidePanel.module.scss";
 
 type Props = {
-  title: string | undefined;
-  component: ReactElement | undefined;
+  title?: string;
+  component?: ReactElement;
 };
 
 const ChatSidePanel: React.FC<Props> = ({ title, component }) => {
