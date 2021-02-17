@@ -1,4 +1,4 @@
-#container {
+.container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -6,14 +6,26 @@
   width: 4.5em;
 }
 
-#mainButtons {
-  padding-top: 1em;
+.panelContainer {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 1em;
+}
+
+.panelContainer section {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-#title {
+.panelContainer button {
+  padding-bottom: 1em;
+}
+
+.title {
   height: var(--top-bar-height);
   display: flex;
   align-items: center;
@@ -21,23 +33,4 @@
   font-size: 0.9em;
   font-weight: bold;
   margin: 0;
-}
-
-@import "index.scss";
-.utilButton {
-  @extend .iconButton;
-  padding: 0.5em 0 0.5em 0em;
-}
-
-#selectedButton {
-  color: var(--ribble-accent-light);
-}
-
-#footerContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-top: auto;
-  height: 7em;
-  width: 100%;
 }

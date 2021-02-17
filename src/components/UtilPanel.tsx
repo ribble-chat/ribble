@@ -34,50 +34,16 @@ const UtilPanel: React.FC = () => {
   };
 
   return (
-    <SidePanel
-      topItems={[chatButton, contactsButton]}
-      bottomItems={[preferencesButton, logoutButton]}
-    />
+    <aside className={styles.container}>
+      <header className={styles.title}>Ribble</header>
+      <nav className={styles.panelContainer}>
+        <SidePanel
+          firstItems={[chatButton, contactsButton]}
+          lastItems={[preferencesButton, logoutButton]}
+        />
+      </nav>
+    </aside>
   );
 };
-
-// const UtilPanel: React.FC<Props> = ({ mainUtilButtons, footerUtilButtons }) => {
-//   const activePage = useRecoilValue(activePageState);
-
-//   function checkSelected(page: Page | undefined): string {
-//     return page === activePage ? styles.selectedButton : "";
-//   }
-
-//   return (
-//     <aside id={styles.container}>
-//       <header id={styles.title}>Ribble</header>
-
-//       <section id={styles.mainButtons}>
-//         {mainUtilButtons.map(({ iconName, handleClick, page }) => (
-//           <button
-//             key={iconName}
-//             className={styles.utilButton}
-//             id={checkSelected(page)}
-//             onClick={handleClick}
-//           >
-//             <i className={iconName} />
-//           </button>
-//         ))}
-//       </section>
-//       <footer id={styles.footerContainer}>
-//         {footerUtilButtons.map(({ iconName, handleClick, page }) => (
-//           <button
-//             key={iconName}
-//             className={styles.utilButton}
-//             id={checkSelected(page)}
-//             onClick={handleClick}
-//           >
-//             <i className={iconName} />
-//           </button>
-//         ))}
-//       </footer>
-//     </aside>
-//   );
-// };
 
 export default UtilPanel;

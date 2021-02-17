@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styles from "./SidePanel.module.scss";
 
 export type SidePanelItem = {
   /// unique name
@@ -9,41 +10,35 @@ export type SidePanelItem = {
 };
 
 type Props = {
-  title?: string;
-  topItems: SidePanelItem[];
-  bottomItems: SidePanelItem[];
+  firstItems: SidePanelItem[];
+  lastItems: SidePanelItem[];
 };
 
-const SidePanel: React.FC<Props> = ({ title, topItems, bottomItems }) => {
+const SidePanel: React.FC<Props> = ({ firstItems, lastItems }) => {
   const [selected, setSelected] = useState<string>();
 
   function renderItems(items: SidePanelItem[]): JSX.Element[] {
-    return topItems.map(({ name, icon, hover, action }) => (
-      <li
+    return items.map(({ name, icon, hover, action }) => (
+      <button
         key={name}
-        className={name === selected ? "selectedClass" : "notSelectedClass"}
+        className={`${name === selected ? styles.selected : "iconButton"}`}
+        onClick={() => {
+          setSelected(name);
+          action();
+        }}
       >
-        <button
-          onClick={() => {
-            setSelected(name);
-            action();
-          }}
-        >
-          <img src={icon} alt={name} />
-        </button>
-      </li>
+        <i className={icon} />
+      </button>
     ));
   }
 
   return (
-    <aside>
-      <h4>{title}</h4>
-      <ul>
-        {renderItems(topItems)}
-        <br />
-        {renderItems(bottomItems)}
-      </ul>
-    </aside>
+    <>
+      <section className={styles.firstButtons}>
+        {renderItems(firstItems)}
+      </section>
+      <section className={styles.lastButtons}>{renderItems(lastItems)}</section>
+    </>
   );
 };
 
