@@ -1,5 +1,6 @@
 import { ReactElement } from "react";
 import { useRecoilState } from "recoil";
+import { useHistory } from "react-router-dom";
 
 import { activeChatPageState } from "state";
 
@@ -11,6 +12,7 @@ type Props = {
 };
 
 const ChatSidePanel: React.FC<Props> = ({ title, component }) => {
+  const history = useHistory();
   const [activeChatPage, setActiveChatPage] = useRecoilState(
     activeChatPageState
   );
@@ -19,7 +21,10 @@ const ChatSidePanel: React.FC<Props> = ({ title, component }) => {
       <header id={styles.titleBar}>
         <button
           className={styles.backButton}
-          onClick={() => setActiveChatPage(undefined)}
+          onClick={() => {
+            setActiveChatPage(undefined);
+            history.push("/chat");
+          }}
         >
           <i className="fas fa-chevron-left"></i>
         </button>

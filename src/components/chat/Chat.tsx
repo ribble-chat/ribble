@@ -2,6 +2,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { useState } from "react";
 
 import { activeChatPageState, currentGroupState } from "state";
+import { Route, Switch, useHistory } from "react-router-dom";
 import GroupsPanel from "./GroupsPanel";
 import MenuBar from "./MenuBar";
 import ChatBox from "./ChatBox";
@@ -14,42 +15,35 @@ import styles from "./Chat.module.scss";
 import { UtilButton } from "types";
 
 const Chat: React.FC = () => {
+  const history = useHistory();
   const currentGroup = useRecoilValue(currentGroupState);
   const [activeChatPage, setActiveChatPage] = useRecoilState(
     activeChatPageState
   );
-  const [currentUtilButton, setCurrentUtilButton] = useState<
-    UtilButton | undefined
-  >(undefined);
 
   const callButton: UtilButton = {
     page: "chat-call",
     iconName: "fas fa-phone-alt",
     handleClick: () => {
-      setCurrentUtilButton(callButton);
       setActiveChatPage(callButton.page);
+      history.push("/chat/call");
     },
-    component: undefined,
   };
   const searchButton: UtilButton = {
     page: "chat-search",
     iconName: "fas fa-search",
     handleClick: () => {
-      setCurrentUtilButton(searchButton);
       setActiveChatPage(searchButton.page);
+      history.push("/chat/search");
     },
-    component: <ChatSearch />,
-    title: "Search Messages",
   };
   const preferencesButton: UtilButton = {
     page: "chat-preferences",
     iconName: "fas fa-cog",
     handleClick: () => {
-      setCurrentUtilButton(preferencesButton);
       setActiveChatPage(preferencesButton.page);
+      history.push("/chat/preferences");
     },
-    component: <ChatPreferences />,
-    title: "Chat Preferences",
   };
 
   const utilButtons: UtilButton[] = [
@@ -68,14 +62,26 @@ const Chat: React.FC = () => {
             <ChatBox />
             <ChatBar />
           </section>
-          {activeChatPage &&
-            currentUtilButton &&
-            currentUtilButton.component && (
-              <ChatSidePanel
-                title={currentUtilButton.title}
-                component={currentUtilButton.component}
-              />
-            )}
+          <Switch>
+            <Route
+              path="/chat/search"
+              render={() => (
+                <ChatSidePanel
+                  title="Search Messages"
+                  component={<ChatSearch />}
+                />
+              )}
+            />
+            <Route
+              path="/chat/preferences"
+              render={() => (
+                <ChatSidePanel
+                  title="Chat Preferences"
+                  component={<ChatPreferences />}
+                />
+              )}
+            />
+          </Switch>
         </>
       ) : (
         <section id={styles.background} />

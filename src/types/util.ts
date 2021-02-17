@@ -1,5 +1,3 @@
-import { ReactElement } from "react";
-
 export type Page =
   | "chat"
   | "contacts"
@@ -12,7 +10,5 @@ export type Page =
 export type UtilButton = {
   iconName: string;
   handleClick: () => void;
-  component?: ReactElement;
   page?: Page;
-  title?: string;
 };
