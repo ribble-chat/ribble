@@ -17,6 +17,8 @@
   background-color: var(--selected-group-bg);
   border-left: solid;
   border-color: var(--ribble-accent-col);
+  box-sizing: border-box;
+  padding-right: 0.5em;
 }
 
 #createGroupContainer input {
@@ -25,6 +27,7 @@
   margin-left: 1em;
   background-color: var(--selected-group-bg);
   color: white;
+  font-size: 0.8em;
 }
 
 #cancelButton {

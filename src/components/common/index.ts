@@ -1,2 +1,2 @@
-export { default as SidePanel } from "./SidePanel";
-export type { SidePanelItem } from "./SidePanel";
+export { default as VerticalPanel } from "./VerticalPanel";
+export { default as HorizontalPanel } from "./HorizontalPanel";

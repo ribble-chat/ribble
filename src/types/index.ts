@@ -1,3 +1,3 @@
 export type { Group, Msg } from "./chat";
 export type { User } from "./user";
-export type { UtilButton } from "./util";
+export type { PanelItem } from "./util";

@@ -16,9 +16,7 @@ const GroupsList: React.FC = () => {
   const user = useRecoilValue(userState)!;
   const [currentGroup, setCurrentGroup] = useRecoilState(currentGroupState);
   const [newGroupName, setNewGroupName] = useState("");
-  const [prevSelectedGroup, setPrevSelectedGroup] = useState<Group | undefined>(
-    undefined
-  );
+  const [prevSelectedGroup, setPrevSelectedGroup] = useState<Group>();
 
   function handleNewGroup(e: React.FormEvent<HTMLFormElement>) {
     if (newGroupName === "") return;

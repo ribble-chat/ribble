@@ -23,13 +23,9 @@
   color: white;
 }
 
-#utilButtons {
+.panelContainer {
   margin-left: auto;
   margin-right: 0.2em;
-}
-
-#selectedButton {
-  color: var(--ribble-accent-light);
 }
 
 @import "index.scss";

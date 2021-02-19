@@ -1,5 +1,5 @@
-import { SidePanel } from "./common";
-import type { SidePanelItem } from "./common";
+import { VerticalPanel } from "./common";
+import type { PanelItem } from "types";
 import styles from "./UtilPanel.module.scss";
 import { useHistory } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
@@ -9,35 +9,34 @@ const UtilPanel: React.FC = () => {
   const history = useHistory();
   const setUser = useSetRecoilState(userState);
 
-  const chatButton: SidePanelItem = {
+  const chatButton: PanelItem = {
     name: "chat",
     icon: "far fa-comment",
     action: () => history.push("/chat"),
   };
 
-  const contactsButton: SidePanelItem = {
+  const contactsButton: PanelItem = {
     name: "contacts",
     icon: "far fa-user",
     action: () => history.push("/contacts"),
   };
 
-  const preferencesButton: SidePanelItem = {
+  const preferencesButton: PanelItem = {
     name: "preferences",
     icon: "fas fa-user-cog",
     action: () => history.push("/preferences"),
   };
 
-  const logoutButton: SidePanelItem = {
+  const logoutButton: PanelItem = {
     name: "logout",
     icon: "fas fa-sign-out-alt",
     action: () => setUser(undefined),
   };
-
   return (
     <aside className={styles.container}>
       <header className={styles.title}>Ribble</header>
       <nav className={styles.panelContainer}>
-        <SidePanel
+        <VerticalPanel
           firstItems={[chatButton, contactsButton]}
           lastItems={[preferencesButton, logoutButton]}
         />
@@ -45,5 +44,4 @@ const UtilPanel: React.FC = () => {
     </aside>
   );
 };
-
 export default UtilPanel;

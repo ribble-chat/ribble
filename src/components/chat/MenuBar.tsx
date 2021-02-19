@@ -1,23 +1,34 @@
+import { HorizontalPanel } from "components/common";
+import type { PanelItem } from "types";
+import { useHistory } from "react-router-dom";
 import { useRecoilValue } from "recoil";
-
-import { activeChatPageState, currentGroupState } from "state";
-import { UtilButton } from "types";
-import { Page } from "types/util";
+import { currentGroupState } from "state";
 
 import styles from "./MenuBar.module.scss";
 
-type Props = {
-  utilButtons: UtilButton[];
-};
-
-const MenuBar: React.FC<Props> = ({ utilButtons }) => {
-  const activeChatPage = useRecoilValue(activeChatPageState);
-
-  function checkSelected(chatPage: Page | undefined): string {
-    return chatPage === activeChatPage ? styles.selectedButton : "";
-  }
-
+const MenuBar: React.FC = () => {
+  const history = useHistory();
   const group = useRecoilValue(currentGroupState)!;
+
+  const callButton: PanelItem = {
+    name: "call",
+    icon: "fas fa-phone-alt",
+    action: isSelected => console.log("call"),
+  };
+
+  const searchButton: PanelItem = {
+    name: "chat search",
+    icon: "fas fa-search",
+    action: isSelected => history.push(isSelected ? "/chat" : "/chat/search"),
+  };
+
+  const preferencesButton: PanelItem = {
+    name: "chat preferences",
+    icon: "fas fa-cog",
+    action: isSelected =>
+      history.push(isSelected ? "/chat" : "/chat/preferences"),
+  };
+
   return (
     <header id={styles.container}>
       <div id={styles.groupTitle}>
@@ -29,17 +40,10 @@ const MenuBar: React.FC<Props> = ({ utilButtons }) => {
         <h3 id={styles.groupName}>{group.name}</h3>
       </div>
 
-      <nav id={styles.utilButtons}>
-        {utilButtons.map(({ iconName, handleClick, page }) => (
-          <button
-            key={iconName}
-            className="iconButton"
-            id={checkSelected(page)}
-            onClick={handleClick}
-          >
-            <i className={iconName} />
-          </button>
-        ))}
+      <nav className={styles.panelContainer}>
+        <HorizontalPanel
+          items={[callButton, searchButton, preferencesButton]}
+        />
       </nav>
     </header>
   );

@@ -1,0 +1,32 @@
+@import "index.scss";
+.selected {
+  @extend .iconButton;
+  color: var(--ribble-accent-light);
+}
+
+.selected:hover {
+  color: var(--ribble-accent-light);
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.itemsContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.itemsContainer button {
+  padding-bottom: 1em;
+}
+
+.firstItems {
+  padding-top: 1.5em;
+}
+
+.lastItems {
+  margin-top: auto;
+}

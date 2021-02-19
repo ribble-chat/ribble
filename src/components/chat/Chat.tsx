@@ -1,8 +1,3 @@
-import { useRecoilState, useRecoilValue } from "recoil";
-import { useState } from "react";
-
-import { activeChatPageState, currentGroupState } from "state";
-import { Route, Switch, useHistory } from "react-router-dom";
 import GroupsPanel from "./GroupsPanel";
 import MenuBar from "./MenuBar";
 import ChatBox from "./ChatBox";
@@ -11,54 +6,26 @@ import ChatSidePanel from "./ChatSidePanel";
 import ChatSearch from "./ChatSearch";
 import ChatPreferences from "./ChatPreferences";
 
+import { currentGroupState } from "state";
+import { useRecoilValue } from "recoil";
+import { Switch, Route } from "react-router-dom";
 import styles from "./Chat.module.scss";
-import { UtilButton } from "types";
 
 const Chat: React.FC = () => {
-  const history = useHistory();
   const currentGroup = useRecoilValue(currentGroupState);
-  const [activeChatPage, setActiveChatPage] = useRecoilState(
-    activeChatPageState
-  );
 
-  const callButton: UtilButton = {
-    page: "chat-call",
-    iconName: "fas fa-phone-alt",
-    handleClick: () => {
-      setActiveChatPage(callButton.page);
-      history.push("/chat/call");
-    },
-  };
-  const searchButton: UtilButton = {
-    page: "chat-search",
-    iconName: "fas fa-search",
-    handleClick: () => {
-      setActiveChatPage(searchButton.page);
-      history.push("/chat/search");
-    },
-  };
-  const preferencesButton: UtilButton = {
-    page: "chat-preferences",
-    iconName: "fas fa-cog",
-    handleClick: () => {
-      setActiveChatPage(preferencesButton.page);
-      history.push("/chat/preferences");
-    },
-  };
-
-  const utilButtons: UtilButton[] = [
-    callButton,
-    searchButton,
-    preferencesButton,
-  ];
-
-  const Messages = () => (
-    <main>
-      <section id={styles.chatContainer}>
-        <MenuBar utilButtons={utilButtons} />
-        <ChatBox />
-        <ChatBar />
-      </section>
+  return (
+    <article id={styles.container}>
+      <GroupsPanel />
+      {currentGroup ? (
+        <section id={styles.chatContainer}>
+          <MenuBar />
+          <ChatBox />
+          <ChatBar />
+        </section>
+      ) : (
+        <section id={styles.background} />
+      )}
       <Switch>
         <Route
           path="/chat/search"
@@ -76,13 +43,6 @@ const Chat: React.FC = () => {
           )}
         />
       </Switch>
-    </main>
-  );
-
-  return (
-    <article id={styles.container}>
-      <GroupsPanel />
-      {currentGroup ? <Messages /> : <section id={styles.background} />}
     </article>
   );
 };

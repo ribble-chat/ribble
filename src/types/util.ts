@@ -7,8 +7,10 @@ export type Page =
   | "chat-search"
   | "chat-preferences";
 
-export type UtilButton = {
-  iconName: string;
-  handleClick: () => void;
-  page?: Page;
+export type PanelItem = {
+  /// unique name
+  name: string;
+  icon: string;
+  hover?: string;
+  action: (isSelected: boolean) => void;
 };
