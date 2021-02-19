@@ -7,29 +7,40 @@ import type { Group } from "types";
 import { currentGroupState, userState } from "state";
 
 import styles from "./GroupsPanel.module.scss";
+import { CreateGroupRequest } from "api";
+import { group } from "console";
 
 const testPicture: string = "default.png";
 let groups: Group[] = [];
 
-let id = 0;
 const GroupsList: React.FC = () => {
   const user = useRecoilValue(userState)!;
+  const [groups, setGroups] = useState<Group[]>([]);
   const [currentGroup, setCurrentGroup] = useRecoilState(currentGroupState);
   const [newGroupName, setNewGroupName] = useState("");
   const [prevSelectedGroup, setPrevSelectedGroup] = useState<Group>();
 
-  function handleNewGroup(e: React.FormEvent<HTMLFormElement>) {
-    if (newGroupName === "") return;
+  async function handleNewGroup(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    let newGroup: Group = {
-      name: newGroupName,
-      picture: testPicture,
-      guid: `newGroupName${id++}`,
-    };
-    api.createGroup({ name: newGroup.name, userIds: [user.id] });
-    groups = [newGroup, ...groups];
-    setCurrentGroup(newGroup);
+    if (newGroupName === "") return;
     setNewGroupName("");
+
+    const newGroupRequest: CreateGroupRequest = {
+      groupName: newGroupName,
+      userIds: [user.id],
+    };
+
+    // gay way
+    // const groupResult = await api.createGroup(newGroupRequest);
+    // if (groupResult.isOk()) {
+    //   setGroups(groups => [groupResult.value, ...groups]);
+    // } else {
+    //   console.log(groupResult.err);
+    // }
+    (await api.createGroup(newGroupRequest))
+      .map(group => setGroups(groups => [group, ...groups]))
+      // use react-toastify or something dunno
+      .map_err(console.log);
   }
 
   function openGroupCreation() {
@@ -88,7 +99,7 @@ const GroupsList: React.FC = () => {
         )}
 
         {groups.map(group => (
-          <GroupItem key={group.guid} group={group} />
+          <GroupItem key={group.id} group={group} />
         ))}
       </div>
     </section>

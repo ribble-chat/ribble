@@ -12,7 +12,7 @@ type Props = {
 const GroupItem: React.FC<Props> = ({ group }) => {
   const [currentGroup, setGroup] = useRecoilState(currentGroupState);
   let style =
-    currentGroup && group.guid === currentGroup.guid && styles.selected;
+    currentGroup && group.id === currentGroup.id && styles.selected;
   return (
     <div
       className={styles.container}

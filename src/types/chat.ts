@@ -1,7 +1,8 @@
 export type Group = {
-  guid: string;
+  id: string;
   name: string;
-  picture: string;
+  userIds: number[];
+  picture?: string;
 };
 
 export type Msg = {

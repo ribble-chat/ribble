@@ -1,10 +1,20 @@
 import axios from "axios";
+import { Group } from "types";
+import { ok, error, Result } from "types/result";
 
 export type CreateGroupRequest = {
-  name: string;
+  groupName: string;
   userIds: number[];
 };
 
-export async function createGroup(request: CreateGroupRequest): Promise<void> {
-  axios.post("/api/chat/groups", request);
+// TODO proper error type
+type ApiError = {};
+
+export async function createGroup(
+  request: CreateGroupRequest
+): Promise<Result<Group, ApiError>> {
+  return axios
+    .post("/api/chat/groups", request)
+    .then<Result<Group, ApiError>>(({ data }) => ok(data))
+    .catch(err => error({}));
 }
