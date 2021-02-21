@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 
 import { userState } from "state";
 import * as api from "api";
@@ -10,12 +10,11 @@ const Login: React.FC = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const [currentUser, setUser] = useRecoilState(userState);
+  const setCurrentUser = useSetRecoilState(userState);
 
   function handleLogin(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     api.login(username, password);
-    setUser({ name: "Jennifer", id: 1 });
   }
 
   return (

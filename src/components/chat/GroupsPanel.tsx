@@ -30,13 +30,6 @@ const GroupsList: React.FC = () => {
       userIds: [user.id],
     };
 
-    // gay way
-    // const groupResult = await api.createGroup(newGroupRequest);
-    // if (groupResult.isOk()) {
-    //   setGroups(groups => [groupResult.value, ...groups]);
-    // } else {
-    //   console.log(groupResult.err);
-    // }
     (await api.createGroup(newGroupRequest))
       .map(group => setGroups(groups => [group, ...groups]))
       // use react-toastify or something dunno

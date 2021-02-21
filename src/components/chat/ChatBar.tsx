@@ -18,7 +18,7 @@ const ChatBar: React.FC = () => {
     if (message === "") return;
     api.sendChatMessage({
       authorId: user.id,
-      author: user.name,
+      author: user.username,
       groupGuid: group.id,
       content: message,
     });

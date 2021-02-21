@@ -1,5 +1,6 @@
 import * as signalR from "@microsoft/signalr";
 import process from "process";
+import { Guid } from "types";
 
 const serverAddress = "ws://localhost:5000";
 
@@ -24,7 +25,7 @@ connection.on("message-received", (msg: Message) => {
 });
 
 type SendMessageRequest = {
-  authorId: number;
+  authorId: Guid;
   author: string;
   groupGuid: string;
   content: string;
