@@ -1,15 +1,17 @@
 import axios from "axios";
+import { User } from "types";
+import { ApiError } from "types/api";
+import {  ok, Result } from "types/result";
+import { ApiResult, errorHandler } from ".";
 
-export async function login(usernameOrEmail: string, password: string) {
-  try {
-    const response = await axios.post("/api/auth", {
+export async function login(usernameOrEmail: string, password: string): Promise<ApiResult<User>> {
+  return axios
+    .post("/api/auth", {
       usernameOrEmail,
       password,
-    });
-    console.log(response);
-  } catch (err) {
-    console.log(err);
-  }
+    })
+    .then<ApiResult<User>>(res => ok(res.data))
+    .catch(errorHandler);
 }
 
 type RegisterUserInfo = {
@@ -20,6 +22,9 @@ type RegisterUserInfo = {
   password: string;
 };
 
-export async function register(registerInfo: RegisterUserInfo) {
-  axios.post("/api/users", registerInfo).then(res => console.log(res.data)).catch(console.log);
+export async function register(registerInfo: RegisterUserInfo): Promise<Result<User, ApiError>> {
+  return axios
+    .post("/api/users", registerInfo)
+    .then<Result<User, ApiError>>(res => ok(res.data))
+    .catch(errorHandler);
 }

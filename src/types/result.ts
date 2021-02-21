@@ -1,7 +1,7 @@
 export type Result<T, E> = Ok<T, E> | Err<T, E>;
 
 export class Ok<T, E> {
-  constructor(public readonly value: T) {}
+  constructor(public readonly value: T) { }
 
   isOk(): this is Ok<T, E> {
     return true;
@@ -19,13 +19,13 @@ export class Ok<T, E> {
     return f(this.value);
   }
 
-  map_err<U>(f: (t: E) => U): Result<T, U> {
+  mapErr<U>(f: (t: E) => U): Result<T, U> {
     return ok(this.value);
   }
 }
 
 export class Err<T, E> {
-  constructor(public readonly err: E) {}
+  constructor(public readonly err: E) { }
 
   isOk(): this is Ok<T, E> {
     return false;
@@ -43,7 +43,7 @@ export class Err<T, E> {
     return error(this.err);
   }
 
-  map_err<U>(f: (t: E) => U): Result<T, U> {
+  mapErr<U>(f: (t: E) => U): Result<T, U> {
     return error(f(this.err));
   }
 }

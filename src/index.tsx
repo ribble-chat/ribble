@@ -5,11 +5,14 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { RecoilRoot } from "recoil";
 import { BrowserRouter } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <RecoilRoot>
+        <ToastContainer />
         <App />
       </RecoilRoot>
     </BrowserRouter>

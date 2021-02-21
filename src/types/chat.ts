@@ -9,8 +9,9 @@ export type Group = {
 
 export type Msg = {
   id: Guid;
-  from: Guid;
-  to: Guid;
+  authorId: Guid;
+  authorName: string;
+  groupId: Guid;
   content: string;
-  time?: number;
+  timestamp: Date;
 };

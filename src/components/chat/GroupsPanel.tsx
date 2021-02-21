@@ -8,7 +8,6 @@ import { currentGroupState, userState } from "state";
 
 import styles from "./GroupsPanel.module.scss";
 import { CreateGroupRequest } from "api";
-import { group } from "console";
 
 const testPicture: string = "default.png";
 let groups: Group[] = [];
@@ -33,7 +32,7 @@ const GroupsList: React.FC = () => {
     (await api.createGroup(newGroupRequest))
       .map(group => setGroups(groups => [group, ...groups]))
       // use react-toastify or something dunno
-      .map_err(console.log);
+      .mapErr(console.log);
   }
 
   function openGroupCreation() {

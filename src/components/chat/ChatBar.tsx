@@ -5,10 +5,12 @@ import { currentGroupState, userState } from "state";
 import * as api from "api";
 
 import styles from "./ChatBar.module.scss";
+import { useChathubConnection } from "api";
 
 const ChatBar: React.FC = () => {
   const emoji: string = "nibbles.png";
 
+  const connection = useChathubConnection();
   const [message, setMessage] = useState("");
   const group = useRecoilValue(currentGroupState)!;
   const user = useRecoilValue(userState)!;
@@ -16,12 +18,13 @@ const ChatBar: React.FC = () => {
   function sendMessage(e: any) {
     e.preventDefault();
     if (message === "") return;
-    api.sendChatMessage({
+    api.sendChatMessage(connection, {
       authorId: user.id,
-      author: user.username,
-      groupGuid: group.id,
+      authorName: user.username,
+      groupId: group.id,
       content: message,
     });
+    setMessage("");
   }
 
   return (

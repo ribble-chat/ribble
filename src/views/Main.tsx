@@ -10,7 +10,7 @@ import styles from "./Main.module.scss";
 const Main = () => {
   return (
     <main id={styles.container}>
-      <Route path="/" component={UtilPanel} />
+      <UtilPanel />
       <section id={styles.currentPage}>
         <Switch>
           <Route path="/chat" component={Chat} />

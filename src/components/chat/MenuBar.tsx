@@ -35,7 +35,7 @@ const MenuBar: React.FC = () => {
         <img
           className={styles.groupPicture}
           src={`./images/${group.picture}`}
-          alt="group picture"
+          alt="group"
         />
         <h3 id={styles.groupName}>{group.name}</h3>
       </div>

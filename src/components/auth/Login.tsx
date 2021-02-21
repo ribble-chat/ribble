@@ -5,6 +5,7 @@ import { userState } from "state";
 import * as api from "api";
 
 import styles from "./Login.module.scss";
+import { toast } from "react-toastify";
 
 const Login: React.FC = () => {
   const [username, setUsername] = useState("");
@@ -12,9 +13,9 @@ const Login: React.FC = () => {
 
   const setCurrentUser = useSetRecoilState(userState);
 
-  function handleLogin(e: React.FormEvent<HTMLFormElement>) {
+  async function handleLogin(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    api.login(username, password);
+    (await api.login(username, password)).map(setCurrentUser).mapErr(toast.error);
   }
 
   return (
