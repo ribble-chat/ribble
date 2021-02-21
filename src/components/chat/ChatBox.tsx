@@ -12,7 +12,7 @@ const ChatBox: React.FC = () => {
     connection.on(MESSAGE_RECEIVED_EVENT, (msg: Msg) => {
       // console.log(`${msg.authorId} sent "${msg.content}" to current group`);
       console.log(msg);
-      setMessages(messages => [...messages, msg]);
+      setMessages(messages => [msg, ...messages]);
       return () => connection.off(MESSAGE_RECEIVED_EVENT);
     });
   }, [connection]);
