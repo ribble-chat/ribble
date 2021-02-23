@@ -6,24 +6,22 @@ import ChatSidePanel from "./ChatSidePanel";
 import ChatSearch from "./ChatSearch";
 import ChatPreferences from "./ChatPreferences";
 import * as api from "api";
-
 import { currentGroupState, userState } from "state";
 import { useRecoilValue } from "recoil";
 import { Switch, Route } from "react-router-dom";
 import styles from "./Chat.module.scss";
 import { useEffect } from "react";
-import {useChathubConnection } from "api";
-
+import { useChathubConnection } from "api";
 
 const Chat: React.FC = () => {
+  const user = useRecoilValue(userState)!;
   const currentGroup = useRecoilValue(currentGroupState);
-  const connection = useChathubConnection();
+  const hub = useChathubConnection();
+  console.log(user);
 
   useEffect(() => {
-    // TODO actually need to join all the user's groups upfront otherwise will only recv messages
-    // from the currentGroup
-    currentGroup && api.joinGroup(connection, currentGroup.id);
-  }, [currentGroup, connection]);
+    api.joinGroups(hub, ...user.groups.map(group => group.id));
+  }, [currentGroup, hub, user.groups]);
 
   return (
     <article id={styles.container}>

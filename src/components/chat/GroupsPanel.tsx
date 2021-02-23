@@ -9,12 +9,9 @@ import { currentGroupState, userState } from "state";
 import styles from "./GroupsPanel.module.scss";
 import { CreateGroupRequest } from "api";
 
-const testPicture: string = "default.png";
-let groups: Group[] = [];
-
 const GroupsList: React.FC = () => {
   const user = useRecoilValue(userState)!;
-  const [groups, setGroups] = useState<Group[]>([]);
+  const [groups, setGroups] = useState<Group[]>(user.groups);
   const [currentGroup, setCurrentGroup] = useRecoilState(currentGroupState);
   const [newGroupName, setNewGroupName] = useState("");
   const [prevSelectedGroup, setPrevSelectedGroup] = useState<Group>();
@@ -59,11 +56,7 @@ const GroupsList: React.FC = () => {
           </form>
         </section>
 
-        <button
-          id={styles.createGroupButton}
-          className="iconButton"
-          onClick={openGroupCreation}
-        >
+        <button id={styles.createGroupButton} className="iconButton" onClick={openGroupCreation}>
           <i className="fas fa-plus" />
         </button>
       </header>
@@ -80,11 +73,7 @@ const GroupsList: React.FC = () => {
                 onChange={e => setNewGroupName(e.target.value)}
               />
             </form>
-            <button
-              id={styles.cancelButton}
-              className="iconButton"
-              onClick={cancelCreateGroup}
-            >
+            <button id={styles.cancelButton} className="iconButton" onClick={cancelCreateGroup}>
               <i className="fas fa-times" />
             </button>
           </section>

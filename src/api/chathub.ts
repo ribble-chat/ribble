@@ -55,11 +55,11 @@ type SendMessageRequest = {
 type SendMessageResponse = {};
 type JoinGroupResponse = {};
 
-export async function joinGroup(
+export async function joinGroups(
   connection: signalR.HubConnection,
-  groupId: Guid
+  ...groupId: Guid[]
 ): Promise<JoinGroupResponse> {
-  return await connection.invoke("JoinGroup", groupId);
+  return await connection.invoke("JoinGroups", groupId);
 }
 
 export async function sendChatMessage(
