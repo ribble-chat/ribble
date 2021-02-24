@@ -1,11 +1,28 @@
-import { useState } from "react";
+import { ReactElement, useState } from "react";
 import { Login, Register } from "components/auth";
 
 import styles from "./Authentication.module.scss";
 
+type TabButton = {
+  name: string;
+  title: string;
+  component: ReactElement;
+};
+
+const loginTabButton: TabButton = {
+  name: "login",
+  title: "LOG IN",
+  component: <Login />,
+};
+
+const registerTabButton: TabButton = {
+  name: "register",
+  title: "REGISTER",
+  component: <Register />,
+};
+
 const Authentication: React.FC = () => {
-  type Tab = "login" | "register";
-  const [activeTab, setTab] = useState<Tab>("login");
+  const [activeTab, setTab] = useState(loginTabButton);
 
   return (
     <div id={styles.background}>
@@ -13,42 +30,26 @@ const Authentication: React.FC = () => {
         <section id={styles.navigation}>
           <h2 id={styles.ribbleTitle}>Ribble</h2>
 
-          <nav id={styles.tabButtons}>
-            {activeTab === "login" ? (
-              <>
+          <nav className={styles.tabButtons}>
+            {[loginTabButton, registerTabButton].map(tabButton => {
+              return (
                 <button
-                  className={styles.selectedTab}
-                  onClick={() => setTab("login")}
+                  key={tabButton.name}
+                  className={
+                    activeTab === tabButton
+                      ? styles.selectedTab
+                      : styles.tabButton
+                  }
+                  onClick={() => setTab(tabButton)}
                 >
-                  LOG IN
+                  {tabButton.title}
                 </button>
-                <button
-                  className={styles.tabButton}
-                  onClick={() => setTab("register")}
-                >
-                  REGISTER
-                </button>
-              </>
-            ) : (
-              <>
-                <button
-                  className={styles.tabButton}
-                  onClick={() => setTab("login")}
-                >
-                  LOG IN
-                </button>
-                <button
-                  className={styles.selectedTab}
-                  onClick={() => setTab("register")}
-                >
-                  REGISTER
-                </button>
-              </>
-            )}
+              );
+            })}
           </nav>
         </section>
 
-        {activeTab === "login" ? <Login /> : <Register />}
+        {activeTab.component}
       </main>
     </div>
   );
