@@ -1,6 +1,10 @@
 import styles from "./ChatSearch.module.scss";
 
 const ChatSearch: React.FC = () => {
-  return <section id={styles.container}>test</section>;
+  return (
+    <div className="chatSidePanelContainer">
+      <article className={styles.content}>test</article>
+    </div>
+  );
 };
 export default ChatSearch;

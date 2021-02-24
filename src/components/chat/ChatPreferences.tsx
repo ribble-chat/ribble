@@ -1,6 +1,10 @@
 import styles from "./ChatPreferences.module.scss";
 
 const ChatPreferences: React.FC = () => {
-  return <section id={styles.container}>chat preferences go here</section>;
+  return (
+    <div className="chatSidePanelContainer">
+      <article className={styles.content}>chat preferences go here</article>
+    </div>
+  );
 };
 export default ChatPreferences;
