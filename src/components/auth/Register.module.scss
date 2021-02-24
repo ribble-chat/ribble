@@ -1,27 +1,18 @@
-#registerForm {
+.formItem {
   display: flex;
   flex-direction: column;
-  width: 15em;
+  color: gray;
+  padding-bottom: 0.6em;
 }
 
-#registerForm > input {
-  border-radius: 10px;
-  padding: 0.6em;
-  margin: 1em;
-  border: none;
-  outline: none;
+.formItem label {
+  font-size: 0.6em;
 }
 
-#registerForm input[type="text"],
-#registerForm input[type="password"] {
-  padding: 0.6em 1em;
+.formItem input {
+  margin-top: 0.6em;
 }
 
-#submitButton {
-  color: white;
-  background-color: var(--ribble-accent-col);
-}
-
-#submitButton:hover {
-  background-color: var(--ribble-accent-light);
+.submitButton {
+  margin-top: 1em;
 }

@@ -4,6 +4,7 @@ import { useSetRecoilState } from "recoil";
 import { userState } from "state";
 import * as api from "api";
 
+import formStyles from "./Form.module.scss";
 import styles from "./Login.module.scss";
 import { toast } from "react-toastify";
 
@@ -15,25 +16,33 @@ const Login: React.FC = () => {
 
   async function handleLogin(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    (await api.login(username, password)).map(setCurrentUser).mapErr(toast.error);
+    (await api.login(username, password))
+      .map(setCurrentUser)
+      .mapErr(toast.error);
   }
 
   return (
     <main>
-      <form id={styles.loginForm} onSubmit={handleLogin}>
+      <form className={formStyles.form} onSubmit={handleLogin}>
         <input
+          className={styles.formInput}
           value={username}
           onChange={e => setUsername(e.target.value)}
           type="text"
           placeholder="Username/Email"
         />
         <input
+          className={styles.formInput}
           value={password}
           onChange={e => setPassword(e.target.value)}
           type="password"
           placeholder="Password"
         />
-        <input id={styles.submitButton} value="LOG IN" type="submit" />
+        <input
+          className={`${formStyles.submitButton} ${styles.formInput}`}
+          value="LOG IN"
+          type="submit"
+        />
       </form>
     </main>
   );

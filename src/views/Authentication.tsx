@@ -16,15 +16,31 @@ const Authentication: React.FC = () => {
           <nav id={styles.tabButtons}>
             {activeTab === "login" ? (
               <>
-                <button className={styles.selectedTab} onClick={() => setTab("login")}>
+                <button
+                  className={styles.selectedTab}
+                  onClick={() => setTab("login")}
+                >
                   LOG IN
                 </button>
-                <button onClick={() => setTab("register")}>REGISTER</button>
+                <button
+                  className={styles.tabButton}
+                  onClick={() => setTab("register")}
+                >
+                  REGISTER
+                </button>
               </>
             ) : (
               <>
-                <button onClick={() => setTab("login")}>LOG IN</button>
-                <button className={styles.selectedTab} onClick={() => setTab("register")}>
+                <button
+                  className={styles.tabButton}
+                  onClick={() => setTab("login")}
+                >
+                  LOG IN
+                </button>
+                <button
+                  className={styles.selectedTab}
+                  onClick={() => setTab("register")}
+                >
                   REGISTER
                 </button>
               </>

@@ -1,0 +1,27 @@
+.submitButton {
+  color: white;
+  background-color: var(--ribble-accent-col);
+}
+
+.submitButton:hover {
+  background-color: var(--ribble-accent-light);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 13em;
+}
+
+.form input {
+  height: 2.5em;
+  border-radius: 0.5em;
+  border: none;
+  outline: none;
+  font-size: 0.6em;
+}
+
+.form input[type="text"],
+.form input[type="password"] {
+  padding: 0 0 0 0.5em;
+}
