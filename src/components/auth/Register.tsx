@@ -7,14 +7,61 @@ import formStyles from "./Form.module.scss";
 import { toast } from "react-toastify";
 import PasswordStrengthBar from "react-password-strength-bar";
 
+type TextInput = {
+  title: string;
+  value: string;
+  inputType: string;
+  handleChange: (e: any) => void;
+};
+
 const Register: React.FC = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
-  const [firstname, setFirstName] = useState("");
-  const [lastname, setLastName] = useState("");
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
   const [password, setPassword] = useState("");
   const [confirmedPassword, setConfirmedPassword] = useState("");
   const [score, setScore] = useState(0);
+
+  const textInputs: TextInput[] = [
+    {
+      title: "Email",
+      value: email,
+      inputType: "text",
+      handleChange: e => setEmail(e.target.value),
+    },
+    {
+      title: "Username",
+      value: username,
+      inputType: "text",
+      handleChange: e => setUsername(e.target.value),
+    },
+    {
+      title: "First Name",
+      value: firstname,
+      inputType: "text",
+      handleChange: e => setFirstname(e.target.value),
+    },
+    {
+      title: "Last Name",
+      value: lastname,
+      inputType: "text",
+      handleChange: e => setLastname(e.target.value),
+    },
+    {
+      title: "Password",
+      value: password,
+      inputType: "password",
+      handleChange: e => setPassword(e.target.value),
+    },
+  ];
+
+  const confirmPasswordInput: TextInput = {
+    title: "Confirm Password",
+    value: confirmedPassword,
+    inputType: "password",
+    handleChange: e => setConfirmedPassword(e.target.value),
+  };
 
   async function handleRegister(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -28,63 +75,29 @@ const Register: React.FC = () => {
     return score > 2 && password === confirmedPassword;
   }
 
+  function formItem(item: TextInput) {
+    const { title, value, inputType, handleChange } = item;
+    return (
+      <section key={title} className={styles.formItem}>
+        <label>{title}</label>
+        <input
+          type={inputType}
+          placeholder={title}
+          value={value}
+          onChange={handleChange}
+        />
+      </section>
+    );
+  }
+
   return (
     <form className={formStyles.form} onSubmit={handleRegister}>
-      <section className={styles.formItem}>
-        <label>Email</label>
-        <input
-          type="text"
-          placeholder="Email"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-        />
-      </section>
-      <section className={styles.formItem}>
-        <label>Username</label>
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={e => setUsername(e.target.value)}
-        />
-      </section>
-      <section className={styles.formItem}>
-        <label>First Name</label>
-        <input
-          type="text"
-          placeholder="First Name"
-          value={firstname}
-          onChange={e => setFirstName(e.target.value)}
-        />
-      </section>
-      <section className={styles.formItem}>
-        <label>Last Name</label>
-        <input
-          type="text"
-          placeholder="Last Name"
-          value={lastname}
-          onChange={e => setLastName(e.target.value)}
-        />
-      </section>
-      <section className={styles.formItem}>
-        <label>Password</label>
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-        />
-      </section>
+      {textInputs.map(textInput => formItem(textInput))}
+
       <PasswordStrengthBar password={password} onChangeScore={setScore} />
-      <section className={styles.formItem}>
-        <label>Confirm Password</label>
-        <input
-          type="password"
-          placeholder="Confirm Password"
-          value={confirmedPassword}
-          onChange={e => setConfirmedPassword(e.target.value)}
-        />
-      </section>
+
+      {formItem(confirmPasswordInput)}
+
       <input
         className={`${formStyles.submitButton} ${styles.submitButton}`}
         disabled={!isValid()}
