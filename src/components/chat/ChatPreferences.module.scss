@@ -1,4 +1,10 @@
-.content {
+@import "index.scss";
+
+.addToGroupButton {
+  @extend .iconButton;
   font-size: 1em;
-  color: white;
+}
+
+.addToGroupButton i {
+  padding-right: 1em;
 }
