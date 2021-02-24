@@ -4,13 +4,45 @@ import { Guid } from "types";
 
 const serverAddress = "ws://localhost:5000";
 
+export interface ChatHub {
+  connection: signalR.HubConnection;
+  joinGroups(...groupsId: Guid[]): Promise<JoinGroupResponse>;
+  sendChatMessage(request: SendMessageRequest): Promise<JoinGroupResponse>;
+}
+
+type SendMessageRequest = {
+  authorId: Guid;
+  groupId: Guid;
+  authorName: string;
+  content: string;
+};
+
+type SendMessageResponse = {};
+type JoinGroupResponse = {};
+
+function mkChatHub(): ChatHub {
+  const connection = mkChathubConnection();
+
+  const joinGroups = async (...groupId: Guid[]): Promise<JoinGroupResponse> =>
+    await connection.invoke("JoinGroups", groupId);
+
+  const sendChatMessage = async (request: SendMessageRequest): Promise<SendMessageResponse> =>
+    await connection.invoke("SendMessage", request);
+
+  return {
+    connection,
+    joinGroups,
+    sendChatMessage,
+  };
+}
+
 export const MESSAGE_RECEIVED_EVENT = "message-received";
 
-const connection = mkChathubConnection();
+const hub = mkChatHub();
 
 // this is probably wrong in all sorts of ways
-export function useChathubConnection(): signalR.HubConnection {
-  return connection;
+export function useChathubConnection(): ChatHub {
+  return hub;
 }
 
 export function mkChathubConnection(): signalR.HubConnection {
@@ -43,29 +75,4 @@ export function mkChathubConnection(): signalR.HubConnection {
   start();
 
   return connection;
-}
-
-type SendMessageRequest = {
-  authorId: Guid;
-  groupId: Guid;
-  authorName: string;
-  content: string;
-};
-
-type SendMessageResponse = {};
-type JoinGroupResponse = {};
-
-export async function joinGroups(
-  connection: signalR.HubConnection,
-  ...groupId: Guid[]
-): Promise<JoinGroupResponse> {
-  return await connection.invoke("JoinGroups", groupId);
-}
-
-export async function sendChatMessage(
-  connection: signalR.HubConnection,
-  request: SendMessageRequest
-): Promise<SendMessageResponse> {
-  console.log("send message");
-  return await connection.invoke("SendMessage", request);
 }

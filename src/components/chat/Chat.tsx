@@ -5,7 +5,6 @@ import ChatBar from "./ChatBar";
 import ChatSidePanel from "./ChatSidePanel";
 import ChatSearch from "./ChatSearch";
 import ChatPreferences from "./ChatPreferences";
-import * as api from "api";
 import { currentGroupState, userState } from "state";
 import { useRecoilValue } from "recoil";
 import { Switch, Route } from "react-router-dom";
@@ -15,12 +14,11 @@ import { useChathubConnection } from "api";
 
 const Chat: React.FC = () => {
   const user = useRecoilValue(userState)!;
-  const currentGroup = useRecoilValue(currentGroupState);
   const hub = useChathubConnection();
-  console.log(user);
+  const currentGroup = useRecoilValue(currentGroupState);
 
   useEffect(() => {
-    api.joinGroups(hub, ...user.groups.map(group => group.id));
+    hub.joinGroups(...user.groups.map(group => group.id));
   }, [currentGroup, hub, user.groups]);
 
   return (
