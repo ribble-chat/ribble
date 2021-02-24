@@ -27,7 +27,11 @@ const GroupsList: React.FC = () => {
     };
 
     (await api.createGroup(newGroupRequest))
-      .map(group => setGroups(groups => [group, ...groups]))
+      .map(group => {
+        group.picture = testPicture;
+        setGroups(groups => [group, ...groups]);
+        setCurrentGroup(group);
+      })
       // use react-toastify or something dunno
       .mapErr(console.log);
   }
