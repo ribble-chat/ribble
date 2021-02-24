@@ -28,7 +28,6 @@ const GroupsList: React.FC = () => {
 
     (await api.createGroup(newGroupRequest))
       .map(group => {
-        group.picture = testPicture;
         setGroups(groups => [group, ...groups]);
         setCurrentGroup(group);
       })
@@ -60,14 +59,18 @@ const GroupsList: React.FC = () => {
           </form>
         </section>
 
-        <button id={styles.createGroupButton} className="iconButton" onClick={openGroupCreation}>
+        <button
+          id={styles.createGroupButton}
+          className="iconButton"
+          onClick={openGroupCreation}
+        >
           <i className="fas fa-plus" />
         </button>
       </header>
 
       <div id={styles.listContainer}>
         {!currentGroup && (
-          <section id={styles.createGroupContainer}>
+          <section className={styles.createGroupContainer}>
             <form onSubmit={handleNewGroup}>
               <input
                 type="text"
@@ -77,7 +80,11 @@ const GroupsList: React.FC = () => {
                 onChange={e => setNewGroupName(e.target.value)}
               />
             </form>
-            <button id={styles.cancelButton} className="iconButton" onClick={cancelCreateGroup}>
+            <button
+              id={styles.cancelButton}
+              className="iconButton"
+              onClick={cancelCreateGroup}
+            >
               <i className="fas fa-times" />
             </button>
           </section>
