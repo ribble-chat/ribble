@@ -90,9 +90,9 @@ const GroupsList: React.FC = () => {
           </section>
         )}
 
-        {groups.map(group => {
-          return <GroupItem key={group.id} group={group} />;
-        })}
+        {groups.map(group => (
+          <GroupItem key={group.id} group={group} />
+        ))}
       </div>
     </section>
   );
