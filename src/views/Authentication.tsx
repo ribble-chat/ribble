@@ -9,10 +9,10 @@ const Authentication: React.FC = () => {
         <section id={styles.navigation}>
           <h2 id={styles.ribbleTitle}>Ribble</h2>
           <Tabs>
-            <Tab title="login">
+            <Tab title="Login">
               <Login />
             </Tab>
-            <Tab title="register">
+            <Tab title="Register">
               <Register />
             </Tab>
           </Tabs>

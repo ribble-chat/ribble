@@ -1,0 +1,27 @@
+.tabButtons {
+  display: flex;
+  list-style: none;
+  margin: 0 0 0.5em 0.4em;
+}
+
+.tabButtons > p {
+  color: white;
+  padding: 1em;
+  margin: 0;
+}
+
+.tabButton {
+  color: white;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: 0.8em;
+}
+
+.selectedTab {
+  @extend .tabButton;
+  text-decoration: underline;
+  text-decoration-color: var(--ribble-accent-col);
+  text-underline-offset: 0.4em;
+  text-decoration-thickness: 0.2em;
+}

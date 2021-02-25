@@ -1,4 +1,5 @@
 import { ReactElement, useState } from "react";
+import styles from "./Tabs.module.scss";
 
 type TabsProps = { children: ReactElement<TabProps>[] };
 
@@ -14,10 +15,16 @@ export const Tabs: React.FC<TabsProps> = ({ children }) => {
 
   return (
     <nav>
-      <ul>
+      <ul className={styles.tabButtons}>
         {children.map((item, i) => (
           <li>
-            <button key={i} onClick={() => setActiveTabIndex(i)}>
+            <button
+              className={
+                i == activeTabIndex ? styles.selectedTab : styles.tabButton
+              }
+              key={i}
+              onClick={() => setActiveTabIndex(i)}
+            >
               {item.props.title}
             </button>
           </li>
