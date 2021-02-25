@@ -16,9 +16,11 @@ export const Tabs: React.FC<TabsProps> = ({ children }) => {
     <nav>
       <ul>
         {children.map((item, i) => (
-          <button key={i} onClick={() => setActiveTabIndex(i)}>
-            {item.props.title}
-          </button>
+          <li>
+            <button key={i} onClick={() => setActiveTabIndex(i)}>
+              {item.props.title}
+            </button>
+          </li>
         ))}
       </ul>
       {children[activeTabIndex]}

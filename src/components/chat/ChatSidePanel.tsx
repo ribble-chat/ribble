@@ -1,5 +1,4 @@
 import { ReactElement } from "react";
-import { useHistory } from "react-router-dom";
 
 import styles from "./ChatSidePanel.module.scss";
 
@@ -9,7 +8,6 @@ type Props = {
 };
 
 const ChatSidePanel: React.FC<Props> = ({ title, component }) => {
-  const history = useHistory();
   return (
     <div id={styles.container}>
       <header id={styles.titleBar}>
