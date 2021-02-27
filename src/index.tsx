@@ -8,7 +8,9 @@ import { BrowserRouter } from "react-router-dom";
 import RecoilLogger from "recoil-logger";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Modal from "react-modal";
 
+Modal.setAppElement("#root");
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
