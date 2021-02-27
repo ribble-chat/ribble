@@ -5,7 +5,7 @@ import ChatBar from "./ChatBar";
 import ChatSidePanel from "./ChatSidePanel";
 import ChatSearch from "./ChatSearch";
 import ChatPreferences from "./ChatPreferences";
-import { currentGroupState, userState } from "state";
+import { currentGroupAtom, userAtom } from "state";
 import { useRecoilValue } from "recoil";
 import { Switch, Route } from "react-router-dom";
 import styles from "./Chat.module.scss";
@@ -13,9 +13,9 @@ import { useEffect } from "react";
 import { useChathubConnection } from "api";
 
 const Chat: React.FC = () => {
-  const user = useRecoilValue(userState)!;
+  const user = useRecoilValue(userAtom)!;
   const hub = useChathubConnection();
-  const currentGroup = useRecoilValue(currentGroupState);
+  const currentGroup = useRecoilValue(currentGroupAtom);
 
   useEffect(() => {
     hub.joinGroups(...user.groups.map(group => group.id));
@@ -36,15 +36,21 @@ const Chat: React.FC = () => {
       <Switch>
         <Route
           path="/chat/search"
-          render={() => <ChatSidePanel title="Search Messages" component={<ChatSearch />} />}
+          render={() => (
+            <ChatSidePanel title="Search Messages" component={<ChatSearch />} />
+          )}
         />
         <Route
           path="/chat/preferences"
-          render={() => <ChatSidePanel title="Chat Preferences" component={<ChatPreferences />} />}
+          render={() => (
+            <ChatSidePanel
+              title="Chat Preferences"
+              component={<ChatPreferences />}
+            />
+          )}
         />
       </Switch>
     </article>
   );
 };
-
 export default Chat;

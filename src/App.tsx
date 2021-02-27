@@ -1,10 +1,10 @@
 import { useRecoilValue } from "recoil";
 import { Main, Authentication } from "views";
-import { userState } from "state";
+import { userAtom } from "state";
 import styles from "./App.module.scss";
 
 function App() {
-  const currentUser = useRecoilValue(userState);
+  const currentUser = useRecoilValue(userAtom);
   return (
     <div id={styles.container}>
       {currentUser ? <Main /> : <Authentication />}

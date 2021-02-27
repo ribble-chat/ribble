@@ -4,22 +4,24 @@ import { useState } from "react";
 import * as api from "api";
 import GroupItem from "./GroupItem";
 import type { Group } from "types";
-import { currentGroupState, userState } from "state";
+import { currentGroupAtom, userAtom } from "state";
 
 import styles from "./GroupsPanel.module.scss";
 import { CreateGroupRequest } from "api";
 
 const GroupsList: React.FC = () => {
-  const user = useRecoilValue(userState)!;
+  const user = useRecoilValue(userAtom)!;
   const [groups, setGroups] = useState<Group[]>(user.groups);
-  const [currentGroup, setCurrentGroup] = useRecoilState(currentGroupState);
+  const [currentGroup, setCurrentGroup] = useRecoilState(currentGroupAtom);
   const [newGroupName, setNewGroupName] = useState("");
   const [prevSelectedGroup, setPrevSelectedGroup] = useState<Group>();
+  const [isCreatingGroup, setCreatingGroup] = useState(false);
 
   async function handleNewGroup(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (newGroupName === "") return;
     setNewGroupName("");
+    setCreatingGroup(false);
 
     const newGroupRequest: CreateGroupRequest = {
       groupName: newGroupName,
@@ -36,11 +38,13 @@ const GroupsList: React.FC = () => {
   }
 
   function openGroupCreation() {
+    setCreatingGroup(true);
     setPrevSelectedGroup(currentGroup);
     setCurrentGroup(undefined);
   }
 
   function cancelCreateGroup() {
+    setCreatingGroup(false);
     setNewGroupName("");
     setCurrentGroup(prevSelectedGroup);
   }
@@ -50,26 +54,29 @@ const GroupsList: React.FC = () => {
   }
 
   return (
-    <section id={styles.container}>
-      <header id={styles.utils}>
-        <section id={styles.searchBar}>
-          <i id={styles.searchIcon} className="fas fa-search" />
+    <section className={styles.container}>
+      <header className={styles.utils}>
+        <section className={styles.searchBar}>
+          <i className={`fas fa-search ${styles.searchIcon}`} />
           <form onSubmit={handleSearch}>
-            <input id={styles.searchForm} type="text" placeholder="Search..." />
+            <input
+              className={styles.searchForm}
+              type="text"
+              placeholder="Search..."
+            />
           </form>
         </section>
 
         <button
-          id={styles.createGroupButton}
-          className="iconButton"
+          className={styles.createGroupButton}
           onClick={openGroupCreation}
         >
           <i className="fas fa-plus" />
         </button>
       </header>
 
-      <div id={styles.listContainer}>
-        {!currentGroup && (
+      <div className={styles.listContainer}>
+        {isCreatingGroup && (
           <section className={styles.createGroupContainer}>
             <form onSubmit={handleNewGroup}>
               <input
@@ -80,11 +87,7 @@ const GroupsList: React.FC = () => {
                 onChange={e => setNewGroupName(e.target.value)}
               />
             </form>
-            <button
-              id={styles.cancelButton}
-              className="iconButton"
-              onClick={cancelCreateGroup}
-            >
+            <button className={styles.cancelButton} onClick={cancelCreateGroup}>
               <i className="fas fa-times" />
             </button>
           </section>

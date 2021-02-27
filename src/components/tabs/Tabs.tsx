@@ -20,7 +20,7 @@ export const Tabs: React.FC<TabsProps> = ({ children }) => {
           <li>
             <button
               className={
-                i == activeTabIndex ? styles.selectedTab : styles.tabButton
+                i === activeTabIndex ? styles.selectedTab : styles.tabButton
               }
               key={i}
               onClick={() => setActiveTabIndex(i)}

@@ -1,5 +1,5 @@
 import { useRecoilState } from "recoil";
-import { currentGroupState } from "state";
+import { currentGroupAtom } from "state";
 
 import type { Group } from "types";
 
@@ -10,7 +10,7 @@ type Props = {
 };
 
 const GroupItem: React.FC<Props> = ({ group }) => {
-  const [currentGroup, setGroup] = useRecoilState(currentGroupState);
+  const [currentGroup, setGroup] = useRecoilState(currentGroupAtom);
   let style = currentGroup && group.id === currentGroup.id && styles.selected;
   return (
     <div

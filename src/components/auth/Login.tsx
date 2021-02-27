@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useSetRecoilState } from "recoil";
 
-import { userState } from "state";
+import { userAtom } from "state";
 import * as api from "api";
 
 import formStyles from "./Form.module.scss";
@@ -12,7 +12,7 @@ const Login: React.FC = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const setCurrentUser = useSetRecoilState(userState);
+  const setCurrentUser = useSetRecoilState(userAtom);
 
   async function handleLogin(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();

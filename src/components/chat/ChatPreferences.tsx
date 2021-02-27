@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { currentGroupState, modalContentAtom } from "state";
+import { currentGroupAtom, modalContentAtom } from "state";
 import AddToGroup from "./AddToGroup";
 
 import styles from "./ChatPreferences.module.scss";
 
 const ChatPreferences: React.FC = () => {
-  const currentGroup = useRecoilState(currentGroupState);
+  const currentGroup = useRecoilState(currentGroupAtom);
   const setModalContent = useSetRecoilState(modalContentAtom);
 
   return (

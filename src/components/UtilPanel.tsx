@@ -3,11 +3,11 @@ import type { PanelItem } from "types";
 import styles from "./UtilPanel.module.scss";
 import { useHistory } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
-import { userState } from "state";
+import { userAtom } from "state";
 
 const UtilPanel: React.FC = () => {
   const history = useHistory();
-  const setUser = useSetRecoilState(userState);
+  const setUser = useSetRecoilState(userAtom);
 
   const chatButton: PanelItem = {
     name: "chat",

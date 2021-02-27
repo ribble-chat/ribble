@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useRecoilValue } from "recoil";
-import { currentGroupState, userState } from "state";
+import { currentGroupAtom, userAtom } from "state";
 
 import styles from "./ChatBar.module.scss";
 import { useChathubConnection } from "api";
@@ -10,8 +10,8 @@ const ChatBar: React.FC = () => {
 
   const hub = useChathubConnection();
   const [message, setMessage] = useState("");
-  const group = useRecoilValue(currentGroupState)!;
-  const user = useRecoilValue(userState)!;
+  const group = useRecoilValue(currentGroupAtom)!;
+  const user = useRecoilValue(userAtom)!;
 
   function sendMessage(e: any) {
     e.preventDefault();

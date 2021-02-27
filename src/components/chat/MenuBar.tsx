@@ -2,13 +2,13 @@ import { HorizontalPanel } from "components/common";
 import type { PanelItem } from "types";
 import { useHistory } from "react-router-dom";
 import { useRecoilValue } from "recoil";
-import { currentGroupState } from "state";
+import { currentGroupAtom } from "state";
 
 import styles from "./MenuBar.module.scss";
 
 const MenuBar: React.FC = () => {
   const history = useHistory();
-  const group = useRecoilValue(currentGroupState)!;
+  const group = useRecoilValue(currentGroupAtom)!;
 
   const callButton: PanelItem = {
     name: "call",
