@@ -17,12 +17,11 @@ export const Tabs: React.FC<TabsProps> = ({ children }) => {
     <nav className={styles.container}>
       <ul className={styles.tabButtons}>
         {children.map((item, i) => (
-          <li>
+          <li key={i}>
             <button
               className={
                 i === activeTabIndex ? styles.selectedTab : styles.tabButton
               }
-              key={i}
               onClick={() => setActiveTabIndex(i)}
             >
               {item.props.title}

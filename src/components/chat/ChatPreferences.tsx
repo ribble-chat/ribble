@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { currentGroupAtom, modalContentAtom } from "state";
 import AddToGroup from "./AddToGroup";

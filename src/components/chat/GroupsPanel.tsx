@@ -76,7 +76,7 @@ const GroupsList: React.FC = () => {
       </header>
 
       <div className={styles.listContainer}>
-        {isCreatingGroup && (
+        {isCreatingGroup && !currentGroup && (
           <section className={styles.createGroupContainer}>
             <form onSubmit={handleNewGroup}>
               <input
