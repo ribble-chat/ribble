@@ -1,14 +1,14 @@
 import styles from "./AddToGroup.module.scss";
 
 const AddToGroup: React.FC = () => {
-  function handleAddToGroup(e: HTMLFormElement) {
+  function handleAddToGroup(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
   }
 
   return (
     <article className={styles.container}>
       <label className={styles.label}>Add person to group</label>
-      <form onSubmit={() => handleAddToGroup}>
+      <form onSubmit={handleAddToGroup}>
         <input
           className={styles.formInput}
           type="text"
