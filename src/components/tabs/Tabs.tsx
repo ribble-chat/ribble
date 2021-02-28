@@ -14,7 +14,7 @@ export const Tabs: React.FC<TabsProps> = ({ children }) => {
   const [activeTabIndex, setActiveTabIndex] = useState<number>(0);
 
   return (
-    <nav>
+    <nav className={styles.container}>
       <ul className={styles.tabButtons}>
         {children.map((item, i) => (
           <li>

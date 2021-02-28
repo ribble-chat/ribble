@@ -5,6 +5,8 @@ import { userAtom } from "state";
 import * as api from "api";
 
 import formStyles from "./Form.module.scss";
+import type { TextInput } from "./Form";
+import { formItem } from "./Form";
 import styles from "./Login.module.scss";
 import { toast } from "react-toastify";
 
@@ -21,25 +23,27 @@ const Login: React.FC = () => {
       .mapErr(toast.error);
   }
 
+  const textInputs: TextInput[] = [
+    {
+      title: "Username / Email",
+      value: username,
+      inputType: "text",
+      handleChange: e => setUsername(e.target.value),
+    },
+    {
+      title: "Password",
+      value: password,
+      inputType: "password",
+      handleChange: e => setPassword(e.target.value),
+    },
+  ];
+
   return (
-    <main>
+    <main className={styles.container}>
       <form className={formStyles.form} onSubmit={handleLogin}>
+        {textInputs.map(textInput => formItem(textInput))}
         <input
-          className={styles.formInput}
-          value={username}
-          onChange={e => setUsername(e.target.value)}
-          type="text"
-          placeholder="Username/Email"
-        />
-        <input
-          className={styles.formInput}
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-          type="password"
-          placeholder="Password"
-        />
-        <input
-          className={`${formStyles.submitButton} ${styles.formInput}`}
+          className={formStyles.submitButton}
           value="LOG IN"
           type="submit"
         />

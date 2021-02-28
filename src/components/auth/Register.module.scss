@@ -1,18 +1,6 @@
-.formItem {
-  display: flex;
-  flex-direction: column;
-  color: gray;
-  padding-bottom: 0.6em;
-}
+@import "./Form.module.scss";
 
-.formItem label {
-  font-size: 0.6em;
-}
-
-.formItem input {
-  margin-top: 0.6em;
-}
-
-.submitButton {
-  margin-top: 1em;
+.container {
+  @extend .formContainer;
+  padding-top: 0.5em;
 }

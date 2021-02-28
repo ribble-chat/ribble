@@ -9,12 +9,8 @@
 
 .ribbleTitle {
   color: white;
-}
-
-.navigation {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  padding: 3em 0 1em 0;
+  margin: 0;
 }
 
 .formBackground {
@@ -25,5 +21,4 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 }

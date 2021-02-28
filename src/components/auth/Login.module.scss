@@ -1,3 +1,6 @@
-.formInput {
-  margin: 1.5em 0;
+@import "./Form.module.scss";
+
+.container {
+  @extend .formContainer;
+  margin-top: 4.5em;
 }

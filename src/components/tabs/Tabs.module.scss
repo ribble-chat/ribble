@@ -1,13 +1,16 @@
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .tabButtons {
   display: flex;
   list-style: none;
-  margin: 0 0 0.5em 0.4em;
-}
-
-.tabButtons > p {
-  color: white;
-  padding: 1em;
   margin: 0;
+  padding: 0;
 }
 
 .tabButton {
@@ -16,6 +19,7 @@
   border: none;
   outline: none;
   font-size: 0.8em;
+  padding: 1em;
 }
 
 .selectedTab {
