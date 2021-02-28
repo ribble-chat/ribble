@@ -1,11 +1,11 @@
-#container {
+.container {
   height: 100%;
   display: flex;
   overflow: hidden;
   flex: 1;
 }
 
-#currentPage {
+.currentPage {
   width: 100%;
   height: 100%;
   background-color: var(--chat-box-bg);

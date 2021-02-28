@@ -9,8 +9,8 @@ type Props = {
 
 const ChatSidePanel: React.FC<Props> = ({ title, component }) => {
   return (
-    <div id={styles.container}>
-      <header id={styles.titleBar}>
+    <div className={styles.container}>
+      <header className={styles.titleBar}>
         <h4>{title}</h4>
       </header>
       {component}

@@ -26,13 +26,13 @@ const ChatBar: React.FC = () => {
   }
 
   return (
-    <div id={styles.container}>
+    <div className={styles.container}>
       <button className="iconButton">
         <i className="fas fa-plus-circle" />
       </button>
       <form onSubmit={sendMessage}>
         <input
-          id={styles.chatForm}
+          className={styles.chatForm}
           value={message}
           onChange={e => setMessage(e.target.value)}
           type="text"
@@ -40,7 +40,7 @@ const ChatBar: React.FC = () => {
         />
       </form>
       <img
-        id={styles.emojiButton}
+        className={styles.emojiButton}
         src={`./images/${emoji}`}
         alt="Send emoji button"
         onClick={sendMessage}

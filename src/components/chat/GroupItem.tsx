@@ -14,8 +14,7 @@ const GroupItem: React.FC<Props> = ({ group }) => {
   let style = currentGroup && group.id === currentGroup.id && styles.selected;
   return (
     <div
-      className={styles.container}
-      id={`${style}`}
+      className={`${styles.container} ${style}`}
       onClick={() => setGroup(group)}
     >
       <img

@@ -22,16 +22,16 @@ const Chat: React.FC = () => {
   }, [currentGroup, hub, user.groups]);
 
   return (
-    <article id={styles.container}>
+    <article className={styles.container}>
       <GroupsPanel />
       {currentGroup ? (
-        <section id={styles.chatContainer}>
+        <section className={styles.chatContainer}>
           <MenuBar />
           <ChatBox />
           <ChatBar />
         </section>
       ) : (
-        <section id={styles.background} />
+        <section className={styles.background} />
       )}
       <Switch>
         <Route

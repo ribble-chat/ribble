@@ -1,4 +1,4 @@
-#container {
+.container {
   margin-top: auto;
   padding-left: 1em;
   display: flex;
@@ -10,13 +10,13 @@
   border-color: var(--chat-box-border-line-col);
 }
 
-#container form {
+.container form {
   grid-area: chat-form;
   width: 100%;
   height: 100%;
 }
 
-#chatForm {
+.chatForm {
   outline: none;
   border: none;
   width: 100%;
@@ -27,7 +27,7 @@
   padding-left: 1em;
 }
 
-#emojiButton {
+.emojiButton {
   width: 2.5em;
   height: 2.5em;
   padding: 1em;
@@ -36,6 +36,6 @@
   filter: brightness(100%);
 }
 
-#emojiButton:hover {
+.emojiButton:hover {
   filter: brightness(120%);
 }

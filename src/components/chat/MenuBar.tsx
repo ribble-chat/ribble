@@ -30,14 +30,14 @@ const MenuBar: React.FC = () => {
   };
 
   return (
-    <header id={styles.container}>
-      <div id={styles.groupTitle}>
+    <header className={styles.container}>
+      <div className={styles.groupTitle}>
         <img
           className={styles.groupPicture}
           src={`./images/${group.picture}`}
           alt="group"
         />
-        <h3 id={styles.groupName}>{group.name}</h3>
+        <h3 className={styles.groupName}>{group.name}</h3>
       </div>
 
       <nav className={styles.panelContainer}>

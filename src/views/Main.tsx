@@ -10,9 +10,9 @@ import styles from "./Main.module.scss";
 
 const Main = () => {
   return (
-    <main id={styles.container}>
+    <main className={styles.container}>
       <UtilPanel />
-      <section id={styles.currentPage}>
+      <section className={styles.currentPage}>
         <Switch>
           <Route path="/chat" component={Chat} />
           <Route path="/contacts" component={Contacts} />

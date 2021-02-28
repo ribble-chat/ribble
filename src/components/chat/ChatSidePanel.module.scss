@@ -1,11 +1,11 @@
 @import "index.scss";
 
-#container {
+.container {
   display: block;
   min-width: 13em;
 }
 
-#titleBar {
+.titleBar {
   height: var(--top-bar-height);
   background-color: var(--chat-side-panel-bg);
   display: flex;
@@ -15,7 +15,7 @@
   border-color: var(--chat-box-border-line-col);
 }
 
-#titleBar h4 {
+.titleBar h4 {
   color: white;
   font-size: 0.9em;
   padding-left: 1em;

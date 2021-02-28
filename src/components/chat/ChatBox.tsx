@@ -16,7 +16,7 @@ const ChatBox: React.FC = () => {
   }, [hub]);
 
   return (
-    <div id={styles.container}>
+    <div className={styles.container}>
       {messages.map(message => (
         <Message key={message.id} message={message} />
       ))}

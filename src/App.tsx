@@ -6,7 +6,7 @@ import styles from "./App.module.scss";
 function App() {
   const currentUser = useRecoilValue(userAtom);
   return (
-    <div id={styles.container}>
+    <div className={styles.container}>
       {currentUser ? <Main /> : <Authentication />}
     </div>
   );

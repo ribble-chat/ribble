@@ -1,4 +1,4 @@
-#container {
+.container {
   margin-bottom: auto;
   height: var(--top-bar-height);
   min-height: var(--top-bar-height);
@@ -11,12 +11,12 @@
   border-color: var(--chat-box-border-line-col);
 }
 
-#groupTitle {
+.groupTitle {
   display: flex;
   padding-left: 0.05em;
 }
 
-#groupName {
+.groupName {
   padding-top: 0.4em;
   font-size: 1.1em;
   font-weight: bold;
