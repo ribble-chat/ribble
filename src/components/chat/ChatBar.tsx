@@ -6,12 +6,12 @@ import styles from "./ChatBar.module.scss";
 import { useChathubConnection } from "api";
 
 const ChatBar: React.FC = () => {
-  const emoji: string = "nibbles.png";
-
   const hub = useChathubConnection();
   const [message, setMessage] = useState("");
   const group = useRecoilValue(currentGroupAtom)!;
   const user = useRecoilValue(userAtom)!;
+
+  function sendEmoji() {}
 
   function sendMessage(e: any) {
     e.preventDefault();
@@ -39,12 +39,11 @@ const ChatBar: React.FC = () => {
           placeholder={`Message ${group.name}`}
         />
       </form>
-      <img
-        className={styles.emojiButton}
-        src={`./images/${emoji}`}
-        alt="Send emoji button"
-        onClick={sendMessage}
-      />
+      <div className={styles.emojiButtonContainer}>
+        <button className={styles.emojiButton} onClick={sendEmoji}>
+          <i className="fas fa-grin-beam"></i>
+        </button>
+      </div>
     </div>
   );
 };

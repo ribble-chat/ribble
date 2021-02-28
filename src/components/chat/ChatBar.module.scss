@@ -1,3 +1,5 @@
+@import "index.scss";
+
 .container {
   margin-top: auto;
   padding-left: 1em;
@@ -27,15 +29,23 @@
   padding-left: 1em;
 }
 
+.emojiButtonContainer {
+  width: 5em;
+  height: 100%;
+  padding-left: 1em;
+  display: flex;
+  justify-content: center;
+}
+
 .emojiButton {
-  width: 2.5em;
-  height: 2.5em;
-  padding: 1em;
-  border-radius: 50%;
-  transition: filter 0.2s;
-  filter: brightness(100%);
+  @extend .iconButton;
+  padding: 0;
+  margin: 0;
+  font-size: 1.5em;
+  transition: font-size 0.2s, color 0.3s;
 }
 
 .emojiButton:hover {
-  filter: brightness(120%);
+  font-size: 1.8em;
+  color: var(--ribble-accent-light);
 }
