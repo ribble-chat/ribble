@@ -2,69 +2,57 @@ import type { TextInput } from "./Form";
 import { useState } from "react";
 import { useSetRecoilState } from "recoil";
 import { userAtom } from "state";
-import * as api from "api";
 import formStyles from "./Form.module.scss";
 import { renderTextInput } from "./Form";
 import styles from "./Login.module.scss";
-import { toast } from "react-toastify";
-import { useLazyLoadQuery } from "react-relay/hooks";
-import { useMutation } from "relay-hooks";
+import { Loading } from "components";
+import { useMutation } from "react-relay/hooks";
 import graphql from "babel-plugin-relay/macro";
+import { LoginMutation } from "./__generated__/LoginMutation.graphql";
 
 const Login: React.FC = () => {
-  const [username, setUsername] = useState("");
+  const [usernameOrEmail, setUsernameOrEmail] = useState("");
   const [password, setPassword] = useState("");
-  const loginQuery = graphql`
-    mutation LoginMutation($usernameOrEmail: String!, $password: String!) {
-      login(usernameOrEmail: $usernameOrEmail, password: $password) {
-        ... on LoginSuccess {
-          user {
-            id
-            userName
-            groups {
+
+  const [mutate, isLoading] = useMutation<LoginMutation>(
+    graphql`
+      mutation LoginMutation($usernameOrEmail: String!, $password: String!) {
+        login(usernameOrEmail: $usernameOrEmail, password: $password) {
+          ... on LoginSuccess {
+            user {
               id
-              name
+              userName
+              groups {
+                id
+                name
+              }
             }
           }
-        }
-        ... on LoginUnknownUserError {
-          error
-        }
-        ... on LoginIncorrectPasswordError {
-          error
+          ... on LoginUnknownUserError {
+            error
+          }
+          ... on LoginIncorrectPasswordError {
+            error
+          }
         }
       }
-    }
-  `;
-
-  const [mutate, { loading }] = useMutation(loginQuery, {
-    onCompleted: console.log,
-  });
-
-  const randomQuery = graphql`
-    query LoginQuery {
-      users {
-        userName
-      }
-    }
-  `;
-  const user = useLazyLoadQuery(randomQuery, {});
-  console.log(user);
+    `
+  );
 
   const setCurrentUser = useSetRecoilState(userAtom);
 
   async function handleLogin(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     // (await api.login(username, password)).map(setCurrentUser).mapErr(toast.error);
-    mutate({ variables: { username, password } });
+    mutate({ variables: { usernameOrEmail, password } });
   }
 
   const textInputs: TextInput[] = [
     {
       title: "Username / Email",
-      value: username,
+      value: usernameOrEmail,
       inputType: "text",
-      handleChange: e => setUsername(e.target.value),
+      handleChange: e => setUsernameOrEmail(e.target.value),
     },
     {
       title: "Password",
@@ -73,6 +61,8 @@ const Login: React.FC = () => {
       handleChange: e => setPassword(e.target.value),
     },
   ];
+
+  if (isLoading) return <Loading />;
 
   return (
     <main className={styles.container}>
@@ -84,5 +74,4 @@ const Login: React.FC = () => {
   );
 };
 
-export default Login;
 export default Login;

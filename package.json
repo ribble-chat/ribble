@@ -33,30 +33,19 @@
   },
   "scripts": {
     "start": "concurrently \"BROWSER=none yarn start-react\" \"wait-on http://localhost:3000 && electron .\"",
-    "start-react": "yarn run relay && react-scripts start",
+    "start-react": "yarn run relay --watch && react-scripts start",
     "build": "yarn run relay && react-scripts build",
-    "relay": "yarn run relay-compiler --schema schema.graphql --src ./src/ --watchman false --language typescript $@",
+    "relay": "yarn run relay-compiler --schema schema.graphql --src ./src/ --language typescript $@",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "proxy": "http://localhost:5000",
   "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "extends": ["react-app", "react-app/jest"]
   },
   "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "production": [">0.2%", "not dead", "not op_mini all"],
+    "development": ["last 1 chrome version", "last 1 firefox version", "last 1 safari version"]
   },
   "devDependencies": {
     "@types/react-modal": "^3.12.0",

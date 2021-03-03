@@ -1,17 +1,20 @@
 import axios from "axios";
-import { Environment, Network, RecordSource, Store, Variables } from "relay-runtime";
+import {
+  Environment,
+  Network,
+  RecordSource,
+  RequestParameters,
+  Store,
+  Variables,
+} from "relay-runtime";
 
-async function fetchGraphQL(query: string, variables: Variables): Promise<any> {
+async function fetchRelay(params: RequestParameters, variables: Variables) {
   const response = await axios.post("/graphql", {
-    query,
+    query: params.text,
     variables,
   });
 
   return response.data;
-}
-
-async function fetchRelay(params: any, variables: Variables) {
-  return fetchGraphQL(params.text, variables);
 }
 
 export default new Environment({
