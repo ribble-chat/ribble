@@ -13,7 +13,7 @@ const MenuBar: React.FC = () => {
   const callButton: PanelItem = {
     name: "call",
     icon: "fas fa-phone-alt",
-    action: isSelected => console.log("call"),
+    action: _isSelected => console.log("call"),
   };
 
   const searchButton: PanelItem = {
@@ -25,25 +25,18 @@ const MenuBar: React.FC = () => {
   const preferencesButton: PanelItem = {
     name: "chat preferences",
     icon: "fas fa-cog",
-    action: isSelected =>
-      history.push(isSelected ? "/chat" : "/chat/preferences"),
+    action: isSelected => history.push(isSelected ? "/chat" : "/chat/preferences"),
   };
 
   return (
     <header className={styles.container}>
       <div className={styles.groupTitle}>
-        <img
-          className={styles.groupPicture}
-          src={`./images/${group.picture}`}
-          alt="group"
-        />
+        <img className={styles.groupPicture} src={`./images/${group.picture}`} alt="group" />
         <h3 className={styles.groupName}>{group.name}</h3>
       </div>
 
       <nav className={styles.panelContainer}>
-        <HorizontalPanel
-          items={[callButton, searchButton, preferencesButton]}
-        />
+        <HorizontalPanel items={[callButton, searchButton, preferencesButton]} />
       </nav>
     </header>
   );
