@@ -19,9 +19,7 @@ export const Tabs: React.FC<TabsProps> = ({ children }) => {
         {children.map((item, i) => (
           <li key={i}>
             <button
-              className={
-                i === activeTabIndex ? styles.selectedTab : styles.tabButton
-              }
+              className={i === activeTabIndex ? styles.selectedTab : styles.tabButton}
               onClick={() => setActiveTabIndex(i)}
             >
               {item.props.title}

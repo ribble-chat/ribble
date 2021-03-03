@@ -1,12 +1,10 @@
 import { useState } from "react";
-
 import * as api from "api";
-
 import styles from "./Register.module.scss";
 import formStyles from "./Form.module.scss";
 import { toast } from "react-toastify";
 import type { TextInput } from "./Form";
-import { formItem } from "./Form";
+import { renderTextInput } from "./Form";
 import PasswordStrengthBar from "react-password-strength-bar";
 
 const Register: React.FC = () => {
@@ -59,11 +57,11 @@ const Register: React.FC = () => {
   return (
     <main className={styles.container}>
       <form className={formStyles.form} onSubmit={handleRegister}>
-        {textInputs.map(textInput => formItem(textInput))}
+        {textInputs.map(renderTextInput)}
 
         <PasswordStrengthBar password={password} onChangeScore={setScore} />
 
-        {formItem(confirmPasswordInput)}
+        {renderTextInput(confirmPasswordInput)}
 
         <input
           className={formStyles.submitButton}

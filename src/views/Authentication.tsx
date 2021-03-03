@@ -1,5 +1,7 @@
 import { Login, Register } from "components/auth";
 import { Tabs, Tab } from "components/tabs";
+import { Loading } from "components";
+import { Suspense } from "react";
 import styles from "./Authentication.module.scss";
 
 const Authentication: React.FC = () => {
@@ -9,7 +11,9 @@ const Authentication: React.FC = () => {
         <h2 className={styles.ribbleTitle}>Ribble</h2>
         <Tabs>
           <Tab title="LOGIN">
-            <Login />
+            <Suspense fallback={<Loading />}>
+              <Login />
+            </Suspense>
           </Tab>
           <Tab title="REGISTER">
             <Register />
