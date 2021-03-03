@@ -41,7 +41,7 @@ const ChatBar: React.FC = () => {
       </form>
       <div className={styles.emojiButtonContainer}>
         <button className={styles.emojiButton} onClick={sendEmoji}>
-          <i className="fas fa-grin-beam"></i>
+          <i className="fas fa-carrot" />
         </button>
       </div>
     </div>
