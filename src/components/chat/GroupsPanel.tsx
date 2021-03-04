@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import * as api from "api";
 import GroupItem from "./GroupItem";
-import type { Group } from "types";
+import type { GroupOverview } from "types";
 import { currentGroupAtom, userAtom } from "state";
 
 import styles from "./GroupsPanel.module.scss";
@@ -11,10 +11,10 @@ import { CreateGroupRequest } from "api";
 
 const GroupsList: React.FC = () => {
   const user = useRecoilValue(userAtom)!;
-  const [groups, setGroups] = useState<Group[]>(user.groups);
+  const [groups, setGroups] = useState(user.groups);
   const [currentGroup, setCurrentGroup] = useRecoilState(currentGroupAtom);
   const [newGroupName, setNewGroupName] = useState("");
-  const [prevSelectedGroup, setPrevSelectedGroup] = useState<Group>();
+  const [prevSelectedGroup, setPrevSelectedGroup] = useState<GroupOverview>();
   const [isCreatingGroup, setCreatingGroup] = useState(false);
 
   async function handleNewGroup(e: React.FormEvent<HTMLFormElement>) {
@@ -59,18 +59,11 @@ const GroupsList: React.FC = () => {
         <section className={styles.searchBar}>
           <i className={`fas fa-search ${styles.searchIcon}`} />
           <form onSubmit={handleSearch}>
-            <input
-              className={styles.searchForm}
-              type="text"
-              placeholder="Search..."
-            />
+            <input className={styles.searchForm} type="text" placeholder="Search..." />
           </form>
         </section>
 
-        <button
-          className={styles.createGroupButton}
-          onClick={openGroupCreation}
-        >
+        <button className={styles.createGroupButton} onClick={openGroupCreation}>
           <i className="fas fa-plus" />
         </button>
       </header>

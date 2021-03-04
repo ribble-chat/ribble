@@ -8,9 +8,12 @@ import styles from "./Login.module.scss";
 import { Loading } from "components";
 import { useMutation } from "react-relay/hooks";
 import graphql from "babel-plugin-relay/macro";
-import { LoginMutation } from "./__generated__/LoginMutation.graphql";
+import { LoginMutation, LoginMutationResponse } from "./__generated__/LoginMutation.graphql";
+import { PayloadError } from "relay-runtime";
+import { toast } from "react-toastify";
 
 const Login: React.FC = () => {
+  const setUser = useSetRecoilState(userAtom);
   const [usernameOrEmail, setUsernameOrEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -19,9 +22,11 @@ const Login: React.FC = () => {
       mutation LoginMutation($usernameOrEmail: String!, $password: String!) {
         login(usernameOrEmail: $usernameOrEmail, password: $password) {
           ... on LoginSuccess {
+            __typename
             user {
               id
-              userName
+              username
+              email
               groups {
                 id
                 name
@@ -29,9 +34,11 @@ const Login: React.FC = () => {
             }
           }
           ... on LoginUnknownUserError {
+            __typename
             error
           }
           ... on LoginIncorrectPasswordError {
+            __typename
             error
           }
         }
@@ -39,12 +46,21 @@ const Login: React.FC = () => {
     `
   );
 
-  const setCurrentUser = useSetRecoilState(userAtom);
+  function handleLoginResponse(res: LoginMutationResponse, _errors: PayloadError[]) {
+    switch (res.login.__typename) {
+      case "LoginSuccess":
+        return setUser(res.login.user);
+      case "LoginUnknownUserError":
+        return void toast.error(`Unknown username or email ${usernameOrEmail}`);
+      case "LoginIncorrectPasswordError":
+        return void toast.error("Incorrect Password");
+    }
+  }
 
   async function handleLogin(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     // (await api.login(username, password)).map(setCurrentUser).mapErr(toast.error);
-    commit({ variables: { usernameOrEmail, password }, onCompleted: res => console.log(res) });
+    commit({ variables: { usernameOrEmail, password }, onCompleted: handleLoginResponse });
   }
 
   const textInputs: TextInput[] = [

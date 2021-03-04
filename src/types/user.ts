@@ -1,8 +1,9 @@
-import { Group, Guid } from "types";
+import { Guid } from "types";
+import { GroupOverview } from "./chat";
 
 export type User = {
-  id: Guid;
-  username: string;
-  email: string;
-  groups: Group[];
+  readonly id: Guid;
+  readonly username: string;
+  readonly email: string;
+  readonly groups: readonly GroupOverview[];
 };

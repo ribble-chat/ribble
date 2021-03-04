@@ -50,11 +50,20 @@ directive @specifiedBy(
   url: String!
 ) on SCALAR
 
+type ChatMessage {
+  groupId: Uuid!
+  timestamp: DateTime!
+  messageId: Uuid!
+  authorId: Uuid!
+  authorName: String!
+  content: String!
+}
+
 """The `DateTime` scalar represents an ISO-8601 compliant date time type."""
 scalar DateTime
 
-type Group {
-  id: Uuid!
+type Group implements Node {
+  id: ID!
   name: String!
   users: [User!]!
 }
@@ -74,6 +83,8 @@ type LoginUnknownUserError {
 }
 
 type Mutation {
+  sendMessage(input: SendMessageInput!): SendMessagePayload!
+  testMutation(input: TestMutationInput!): TestMutationPayload!
   login(usernameOrEmail: String!, password: String!): LoginResult!
 }
 
@@ -84,64 +95,46 @@ interface Node {
   id: ID!
 }
 
-"""Information about pagination in a connection."""
-type PageInfo {
-  """
-  Indicates whether more edges exist following the set defined by the clients arguments.
-  """
-  hasNextPage: Boolean!
-
-  """
-  Indicates whether more edges exist prior the set defined by the clients arguments.
-  """
-  hasPreviousPage: Boolean!
-
-  """When paginating backwards, the cursor to continue."""
-  startCursor: String
-
-  """When paginating forwards, the cursor to continue."""
-  endCursor: String
-}
-
 type Query {
   node(id: ID!): Node
-  users(first: Int, after: String, last: Int, before: String): UserConnection
+  users: [User!]!
   groups: [Group!]!
+}
+
+input SendMessageInput {
+  authorId: Uuid!
+  groupId: Uuid!
+  authorUsername: String!
+  content: String!
+}
+
+type SendMessagePayload {
+  message: ChatMessage!
+}
+
+type Subscription {
+  onTestEvent: Int!
+  onMessageSent(groupId: Uuid!): ChatMessage!
+}
+
+input TestMutationInput {
+  x: Int!
+}
+
+type TestMutationPayload {
+  y: Int!
 }
 
 type User implements Node {
   id: ID!
-  groups: [Group!]!
-  userName: String
-  normalizedUserName: String
-  email: String
-  normalizedEmail: String
-  concurrencyStamp: String
+  username: String!
+  email: String!
   phoneNumber: String
+  groups: [Group!]!
+  concurrencyStamp: String
   twoFactorEnabled: Boolean!
   lockoutEnd: DateTime
   lockoutEnabled: Boolean!
-}
-
-"""A connection to a list of items."""
-type UserConnection {
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """A list of edges."""
-  edges: [UserEdge!]
-
-  """A flattened list of the nodes."""
-  nodes: [User]
-}
-
-"""An edge in a connection."""
-type UserEdge {
-  """A cursor for use in pagination."""
-  cursor: String!
-
-  """The item at the end of the edge."""
-  node: User
 }
 
 scalar Uuid

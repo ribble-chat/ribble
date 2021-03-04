@@ -18,7 +18,7 @@ const Chat: React.FC = () => {
   const currentGroup = useRecoilValue(currentGroupAtom);
 
   useEffect(() => {
-    hub.joinGroups(...user.groups.map(group => group.id));
+    // hub.joinGroups(...user.groups.map(group => group.id));
   }, [currentGroup, hub, user.groups]);
 
   return (
@@ -36,18 +36,11 @@ const Chat: React.FC = () => {
       <Switch>
         <Route
           path="/chat/search"
-          render={() => (
-            <ChatSidePanel title="Search Messages" component={<ChatSearch />} />
-          )}
+          render={() => <ChatSidePanel title="Search Messages" component={<ChatSearch />} />}
         />
         <Route
           path="/chat/preferences"
-          render={() => (
-            <ChatSidePanel
-              title="Chat Preferences"
-              component={<ChatPreferences />}
-            />
-          )}
+          render={() => <ChatSidePanel title="Chat Preferences" component={<ChatPreferences />} />}
         />
       </Switch>
     </article>
