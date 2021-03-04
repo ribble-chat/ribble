@@ -5,7 +5,7 @@ import ChatBar from "./ChatBar";
 import ChatSidePanel from "./ChatSidePanel";
 import ChatSearch from "./ChatSearch";
 import ChatPreferences from "./ChatPreferences";
-import { currentGroupAtom, userAtom } from "state";
+import { currentGroupAtom, currentUserAtom } from "state";
 import { useRecoilValue } from "recoil";
 import { Switch, Route } from "react-router-dom";
 import styles from "./Chat.module.scss";
@@ -13,7 +13,7 @@ import { useEffect } from "react";
 import { useChathubConnection } from "api";
 
 const Chat: React.FC = () => {
-  const user = useRecoilValue(userAtom)!;
+  const user = useRecoilValue(currentUserAtom)!;
   const hub = useChathubConnection();
   const currentGroup = useRecoilValue(currentGroupAtom);
 

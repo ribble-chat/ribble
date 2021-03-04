@@ -1,5 +1,5 @@
 import { useRecoilValue } from "recoil";
-import { userAtom } from "state";
+import { currentUserAtom } from "state";
 import type { Msg } from "types";
 
 import styles from "./Message.module.scss";
@@ -9,7 +9,7 @@ type Props = {
 };
 
 const Message: React.FC<Props> = ({ message }) => {
-  const user = useRecoilValue(userAtom)!;
+  const user = useRecoilValue(currentUserAtom)!;
   const messageClass =
     user.id === message.authorId ? styles.self : styles.other;
   return (

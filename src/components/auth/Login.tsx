@@ -1,7 +1,7 @@
 import type { TextInput } from "./Form";
 import { useState } from "react";
 import { useSetRecoilState } from "recoil";
-import { userAtom } from "state";
+import { currentUserAtom } from "state";
 import formStyles from "./Form.module.scss";
 import { renderTextInput } from "./Form";
 import styles from "./Login.module.scss";
@@ -13,7 +13,7 @@ import { PayloadError } from "relay-runtime";
 import { toast } from "react-toastify";
 
 const Login: React.FC = () => {
-  const setUser = useSetRecoilState(userAtom);
+  const setUser = useSetRecoilState(currentUserAtom);
   const [usernameOrEmail, setUsernameOrEmail] = useState("");
   const [password, setPassword] = useState("");
 

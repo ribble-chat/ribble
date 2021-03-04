@@ -1,50 +1,80 @@
 import { useRecoilState, useRecoilValue } from "recoil";
 import { useState } from "react";
-
-import * as api from "api";
 import GroupItem from "./GroupItem";
 import type { GroupOverview } from "types";
-import { currentGroupAtom, userAtom } from "state";
-
+import { currentGroupAtom, currentUserAtom } from "state";
+import graphql from "babel-plugin-relay/macro";
 import styles from "./GroupsPanel.module.scss";
-import { CreateGroupRequest } from "api";
+import { useMutation } from "react-relay/hooks";
+import {
+  GroupsPanelCreateGroupMutation,
+  GroupsPanelCreateGroupMutationResponse,
+} from "./__generated__/GroupsPanelCreateGroupMutation.graphql";
 
 const GroupsList: React.FC = () => {
-  const user = useRecoilValue(userAtom)!;
-  const [groups, setGroups] = useState(user.groups);
+  const currentUser = useRecoilValue(currentUserAtom)!;
+  const [groups, _setGroups] = useState(currentUser.groups);
   const [currentGroup, setCurrentGroup] = useRecoilState(currentGroupAtom);
   const [newGroupName, setNewGroupName] = useState("");
   const [prevSelectedGroup, setPrevSelectedGroup] = useState<GroupOverview>();
-  const [isCreatingGroup, setCreatingGroup] = useState(false);
+  const [isCreatingGroup, setIsCreatingGroup] = useState(false);
+
+  const [commitCreateGroup, _isLoading] = useMutation<GroupsPanelCreateGroupMutation>(
+    graphql`
+      mutation GroupsPanelCreateGroupMutation($newGroupName: String!, $userIds: [Uuid!]!) {
+        createGroup(input: { groupName: $newGroupName, userIds: $userIds }) {
+          group {
+            id
+            name
+            users {
+              id
+              username
+              email
+            }
+          }
+        }
+      }
+    `
+  );
+
+  function handleGroupCreated(res: GroupsPanelCreateGroupMutationResponse) {
+    const { group } = res.createGroup;
+    setCurrentGroup(group);
+  }
 
   async function handleNewGroup(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (newGroupName === "") return;
     setNewGroupName("");
-    setCreatingGroup(false);
+    setIsCreatingGroup(false);
 
-    const newGroupRequest: CreateGroupRequest = {
-      groupName: newGroupName,
-      userIds: [user.id],
-    };
+    commitCreateGroup({
+      variables: { newGroupName, userIds: [currentUser.id] },
+      onCompleted: handleGroupCreated,
+      onError: console.log,
+    });
+    // const newGroupRequest: CreateGroupRequest = {
+    // groupName: newGroupName,
+    // userIds: [user.id],
+    // };
 
-    (await api.createGroup(newGroupRequest))
-      .map(group => {
-        setGroups(groups => [group, ...groups]);
-        setCurrentGroup(group);
-      })
-      // use react-toastify or something dunno
-      .mapErr(console.log);
+    // (await api.createGroup(newGroupRequest))
+    // .map(group => {
+    // setGroups(groups => [group, ...groups]);
+    // setCurrentGroup(group);
+    // })
+    // // use react-toastify or something dunno
+    // .mapErr(console.log);
   }
 
   function openGroupCreation() {
-    setCreatingGroup(true);
+    setIsCreatingGroup(true);
     setPrevSelectedGroup(currentGroup);
     setCurrentGroup(undefined);
   }
 
   function cancelCreateGroup() {
-    setCreatingGroup(false);
+    setIsCreatingGroup(false);
     setNewGroupName("");
     setCurrentGroup(prevSelectedGroup);
   }
@@ -69,7 +99,7 @@ const GroupsList: React.FC = () => {
       </header>
 
       <div className={styles.listContainer}>
-        {isCreatingGroup && !currentGroup && (
+        {isCreatingGroup && (
           <section className={styles.createGroupContainer}>
             <form onSubmit={handleNewGroup}>
               <input

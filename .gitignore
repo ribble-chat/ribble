@@ -4,7 +4,8 @@
 /node_modules
 /.pnp
 .pnp.js
-__generated__
+# should this be ignored or not?
+# __generated__
 
 # testing
 /coverage

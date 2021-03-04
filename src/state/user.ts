@@ -1,7 +1,7 @@
 import { atom } from "recoil";
 import type { User, GroupOverview } from "types";
 
-export const userAtom = atom<User | undefined>({
+export const currentUserAtom = atom<User | undefined>({
   key: "user",
   default: undefined,
 });
