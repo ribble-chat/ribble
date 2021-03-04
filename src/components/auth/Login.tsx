@@ -14,7 +14,7 @@ const Login: React.FC = () => {
   const [usernameOrEmail, setUsernameOrEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const [mutate, isLoading] = useMutation<LoginMutation>(
+  const [commit, isLoading] = useMutation<LoginMutation>(
     graphql`
       mutation LoginMutation($usernameOrEmail: String!, $password: String!) {
         login(usernameOrEmail: $usernameOrEmail, password: $password) {
@@ -44,7 +44,7 @@ const Login: React.FC = () => {
   async function handleLogin(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     // (await api.login(username, password)).map(setCurrentUser).mapErr(toast.error);
-    mutate({ variables: { usernameOrEmail, password } });
+    commit({ variables: { usernameOrEmail, password }, onCompleted: res => console.log(res) });
   }
 
   const textInputs: TextInput[] = [

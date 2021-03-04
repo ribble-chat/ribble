@@ -16,6 +16,7 @@
     "@types/react-router-dom": "^5.1.7",
     "assert": "^2.0.0",
     "axios": "^0.21.1",
+    "graphql-ws": "^4.2.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-modal": "^3.12.1",
@@ -33,7 +34,7 @@
   },
   "scripts": {
     "start": "concurrently \"BROWSER=none yarn start-react\" \"wait-on http://localhost:3000 && electron .\"",
-    "start-react": "yarn run relay --watch && react-scripts start",
+    "start-react": "concurrently \"yarn run relay --watch\" \"react-scripts start\"",
     "build": "yarn run relay && react-scripts build",
     "relay": "yarn run relay-compiler --schema schema.graphql --src ./src/ --language typescript $@",
     "test": "react-scripts test",
