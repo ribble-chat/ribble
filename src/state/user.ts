@@ -6,6 +6,11 @@ export const currentUserAtom = atom<User | undefined>({
   default: undefined,
 });
 
+export const userGroupOverviewsAtom = atom<readonly GroupOverview[]>({
+  key: "userGroupOverviews",
+  default: [],
+});
+
 export const currentGroupAtom = atom<GroupOverview | undefined>({
   key: "currentGroup",
   default: undefined,

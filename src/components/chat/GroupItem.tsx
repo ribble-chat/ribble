@@ -8,11 +8,18 @@ type Props = {
 };
 
 const GroupItem: React.FC<Props> = ({ group }) => {
-  const [currentGroup, setGroup] = useRecoilState(currentGroupAtom);
+  const [currentGroup, setCurrentGroup] = useRecoilState(currentGroupAtom);
   let style = currentGroup && group.id === currentGroup.id && styles.selected;
   return (
-    <div className={`${styles.container} ${style}`} onClick={() => setGroup(group)}>
-      <img className={styles.groupPicture} src={`./images/${group.picture}`} alt="profile" />
+    <div
+      className={`${styles.container} ${style}`}
+      onClick={() => setCurrentGroup(group)}
+    >
+      <img
+        className={styles.groupPicture}
+        src={`./images/${group.picture}`}
+        alt="profile"
+      />
       <p className={styles.groupName}>{group.name}</p>
     </div>
   );

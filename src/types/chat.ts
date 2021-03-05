@@ -1,7 +1,13 @@
 import { Guid } from "types";
 
 export type GroupDetails = GroupOverview & {
-  readonly userIds: number[];
+  readonly users: readonly UserOverview[];
+};
+
+export type UserOverview = {
+  readonly id: string;
+  readonly username: string;
+  readonly email: string;
 };
 
 export type GroupOverview = {
@@ -16,5 +22,5 @@ export type Msg = {
   readonly authorName: string;
   readonly groupId: Guid;
   readonly timestamp: Date;
-  content: string;
+  readonly content: string;
 };

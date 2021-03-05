@@ -50,18 +50,53 @@ directive @specifiedBy(
   url: String!
 ) on SCALAR
 
+input BooleanOperationFilterInput {
+  eq: Boolean
+  neq: Boolean
+}
+
 type ChatMessage {
-  groupId: Uuid!
+  groupId: ID!
   timestamp: DateTime!
-  messageId: Uuid!
-  authorId: Uuid!
-  authorName: String!
+  messageId: ID!
+  authorId: ID!
+  authorUsername: String!
   content: String!
+}
+
+input ComparableGuidOperationFilterInput {
+  eq: Uuid
+  neq: Uuid
+  in: [Uuid!]
+  nin: [Uuid!]
+  gt: Uuid
+  ngt: Uuid
+  gte: Uuid
+  ngte: Uuid
+  lt: Uuid
+  nlt: Uuid
+  lte: Uuid
+  nlte: Uuid
+}
+
+input ComparableNullableOfDateTimeOffsetOperationFilterInput {
+  eq: DateTime
+  neq: DateTime
+  in: [DateTime]
+  nin: [DateTime]
+  gt: DateTime
+  ngt: DateTime
+  gte: DateTime
+  ngte: DateTime
+  lt: DateTime
+  nlt: DateTime
+  lte: DateTime
+  nlte: DateTime
 }
 
 input CreateGroupInput {
   groupName: String!
-  userIds: [Uuid!]!
+  userIds: [ID!]!
 }
 
 type CreateGroupPayload {
@@ -77,6 +112,14 @@ type Group implements Node {
   users: [User!]!
 }
 
+input GroupFilterInput {
+  and: [GroupFilterInput!]
+  or: [GroupFilterInput!]
+  id: ComparableGuidOperationFilterInput
+  name: StringOperationFilterInput
+  users: ListFilterInputTypeOfUserFilterInput
+}
+
 input JoinGroupInput {
   groupId: Uuid!
   userId: Uuid!
@@ -84,6 +127,20 @@ input JoinGroupInput {
 
 type JoinGroupPayload {
   group: Group!
+}
+
+input ListFilterInputTypeOfGroupFilterInput {
+  all: GroupFilterInput
+  none: GroupFilterInput
+  some: GroupFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfUserFilterInput {
+  all: UserFilterInput
+  none: UserFilterInput
+  some: UserFilterInput
+  any: Boolean
 }
 
 type LoginIncorrectPasswordError {
@@ -105,6 +162,7 @@ type Mutation {
   joinGroup(input: JoinGroupInput!): JoinGroupPayload!
   createGroup(input: CreateGroupInput!): CreateGroupPayload!
   login(usernameOrEmail: String!, password: String!): LoginResult!
+  register(input: RegisterMutationInput!): RegisterMutationPayload!
   testMutation(input: TestMutationInput!): TestMutationPayload!
 }
 
@@ -117,19 +175,44 @@ interface Node {
 
 type Query {
   node(id: ID!): Node
-  users: [User!]!
-  groups: [Group!]!
+  users(where: UserFilterInput): [User!]!
+  groups(where: GroupFilterInput): [Group!]!
+}
+
+input RegisterMutationInput {
+  username: String!
+  email: String!
+  password: String!
+}
+
+type RegisterMutationPayload {
+  user: User!
 }
 
 input SendMessageInput {
-  authorId: Uuid!
-  groupId: Uuid!
+  authorId: ID!
+  groupId: ID!
   authorUsername: String!
   content: String!
 }
 
 type SendMessagePayload {
   message: ChatMessage!
+}
+
+input StringOperationFilterInput {
+  and: [StringOperationFilterInput!]
+  or: [StringOperationFilterInput!]
+  eq: String
+  neq: String
+  contains: String
+  ncontains: String
+  in: [String]
+  nin: [String]
+  startsWith: String
+  nstartsWith: String
+  endsWith: String
+  nendsWith: String
 }
 
 type Subscription {
@@ -149,12 +232,26 @@ type User implements Node {
   id: ID!
   username: String!
   email: String!
-  concurrencyStamp: String!
   phoneNumber: String
   groups: [Group!]!
+  concurrencyStamp: String
   twoFactorEnabled: Boolean!
   lockoutEnd: DateTime
   lockoutEnabled: Boolean!
+}
+
+input UserFilterInput {
+  and: [UserFilterInput!]
+  or: [UserFilterInput!]
+  id: ComparableGuidOperationFilterInput
+  userName: StringOperationFilterInput
+  email: StringOperationFilterInput
+  phoneNumber: StringOperationFilterInput
+  groups: ListFilterInputTypeOfGroupFilterInput
+  concurrencyStamp: StringOperationFilterInput
+  twoFactorEnabled: BooleanOperationFilterInput
+  lockoutEnd: ComparableNullableOfDateTimeOffsetOperationFilterInput
+  lockoutEnabled: BooleanOperationFilterInput
 }
 
 scalar Uuid

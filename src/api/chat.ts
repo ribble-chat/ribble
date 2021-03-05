@@ -9,7 +9,9 @@ export type CreateGroupRequest = {
   userIds: Guid[];
 };
 
-export async function createGroup(request: CreateGroupRequest): Promise<ApiResult<GroupDetails>> {
+export async function createGroup(
+  request: CreateGroupRequest
+): Promise<ApiResult<GroupDetails>> {
   return axios
     .post("/api/chat/groups", request)
     .then<ApiResult<GroupDetails>>(({ data }) => ok(data))

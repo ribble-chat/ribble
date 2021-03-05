@@ -4,16 +4,16 @@ import styles from "./ChatSidePanel.module.scss";
 
 type Props = {
   title?: string;
-  component?: ReactElement;
+  children?: ReactElement;
 };
 
-const ChatSidePanel: React.FC<Props> = ({ title, component }) => {
+const ChatSidePanel: React.FC<Props> = ({ title, children }) => {
   return (
     <div className={styles.container}>
       <header className={styles.titleBar}>
         <h4>{title}</h4>
       </header>
-      {component}
+      {children}
     </div>
   );
 };

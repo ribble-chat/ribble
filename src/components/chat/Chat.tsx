@@ -12,18 +12,19 @@ import styles from "./Chat.module.scss";
 import { useEffect } from "react";
 import { useChathubConnection } from "api";
 
-const Chat: React.FC = () => {
+const ChatView: React.FC = () => {
   const user = useRecoilValue(currentUserAtom)!;
   const hub = useChathubConnection();
   const currentGroup = useRecoilValue(currentGroupAtom);
 
-  useEffect(() => {
-    // hub.joinGroups(...user.groups.map(group => group.id));
-  }, [currentGroup, hub, user.groups]);
+  // useEffect(() => {
+  // hub.joinGroups(...user.groups.map(group => group.id));
+  // }, [currentGroup, hub, user]);
 
   return (
     <article className={styles.container}>
       <GroupsPanel />
+      {/* wrap in <Chat /> component? */}
       {currentGroup ? (
         <section className={styles.chatContainer}>
           <MenuBar />
@@ -36,14 +37,23 @@ const Chat: React.FC = () => {
       <Switch>
         <Route
           path="/chat/search"
-          render={() => <ChatSidePanel title="Search Messages" component={<ChatSearch />} />}
+          render={() => (
+            <ChatSidePanel title="Search Messages">
+              <ChatSearch />
+            </ChatSidePanel>
+          )}
         />
         <Route
           path="/chat/preferences"
-          render={() => <ChatSidePanel title="Chat Preferences" component={<ChatPreferences />} />}
+          render={() => (
+            <ChatSidePanel title="Chat Preferences">
+              <ChatPreferences />
+            </ChatSidePanel>
+          )}
         />
       </Switch>
     </article>
   );
 };
-export default Chat;
+
+export default ChatView;

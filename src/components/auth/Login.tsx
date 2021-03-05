@@ -1,19 +1,23 @@
 import type { TextInput } from "./Form";
 import { useState } from "react";
 import { useSetRecoilState } from "recoil";
-import { currentUserAtom } from "state";
+import { currentUserAtom, userGroupOverviewsAtom } from "state";
 import formStyles from "./Form.module.scss";
 import { renderTextInput } from "./Form";
 import styles from "./Login.module.scss";
 import { Loading } from "components";
 import { useMutation } from "react-relay/hooks";
 import graphql from "babel-plugin-relay/macro";
-import { LoginMutation, LoginMutationResponse } from "./__generated__/LoginMutation.graphql";
+import {
+  LoginMutation,
+  LoginMutationResponse,
+} from "./__generated__/LoginMutation.graphql";
 import { PayloadError } from "relay-runtime";
 import { toast } from "react-toastify";
 
 const Login: React.FC = () => {
-  const setUser = useSetRecoilState(currentUserAtom);
+  const setCurrentUser = useSetRecoilState(currentUserAtom);
+  const setUserGroupOverviews = useSetRecoilState(userGroupOverviewsAtom);
   const [usernameOrEmail, setUsernameOrEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -46,10 +50,17 @@ const Login: React.FC = () => {
     `
   );
 
-  function handleLoginResponse(res: LoginMutationResponse, _errors: PayloadError[]) {
+  function handleLoginResponse(
+    res: LoginMutationResponse,
+    _errors: PayloadError[]
+  ) {
     switch (res.login.__typename) {
-      case "LoginSuccess":
-        return setUser(res.login.user);
+      case "LoginSuccess": {
+        const { user } = res.login;
+        setCurrentUser(user);
+        setUserGroupOverviews(user.groups);
+        break;
+      }
       case "LoginUnknownUserError":
         return void toast.error(`Unknown username or email ${usernameOrEmail}`);
       case "LoginIncorrectPasswordError":
@@ -60,7 +71,10 @@ const Login: React.FC = () => {
   async function handleLogin(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     // (await api.login(username, password)).map(setCurrentUser).mapErr(toast.error);
-    commit({ variables: { usernameOrEmail, password }, onCompleted: handleLoginResponse });
+    commit({
+      variables: { usernameOrEmail, password },
+      onCompleted: handleLoginResponse,
+    });
   }
 
   const textInputs: TextInput[] = [
@@ -84,7 +98,11 @@ const Login: React.FC = () => {
     <main className={styles.container}>
       <form className={formStyles.form} onSubmit={handleLogin}>
         {textInputs.map(renderTextInput)}
-        <input className={formStyles.submitButton} value="LOG IN" type="submit" />
+        <input
+          className={formStyles.submitButton}
+          value="LOG IN"
+          type="submit"
+        />
       </form>
     </main>
   );

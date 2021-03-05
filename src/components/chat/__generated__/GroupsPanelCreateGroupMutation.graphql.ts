@@ -5,7 +5,7 @@
 import { ConcreteRequest } from "relay-runtime";
 export type GroupsPanelCreateGroupMutationVariables = {
     newGroupName: string;
-    userIds: Array<unknown>;
+    userIds: Array<string>;
 };
 export type GroupsPanelCreateGroupMutationResponse = {
     readonly createGroup: {
@@ -30,7 +30,7 @@ export type GroupsPanelCreateGroupMutation = {
 /*
 mutation GroupsPanelCreateGroupMutation(
   $newGroupName: String!
-  $userIds: [Uuid!]!
+  $userIds: [ID!]!
 ) {
   createGroup(input: {groupName: $newGroupName, userIds: $userIds}) {
     group {
@@ -159,14 +159,14 @@ return {
     "selections": (v2/*: any*/)
   },
   "params": {
-    "cacheID": "05e789a217aaa8e9c99b3606d1562cec",
+    "cacheID": "791558fa6be1fbbfb24b2ea3c1e98c46",
     "id": null,
     "metadata": {},
     "name": "GroupsPanelCreateGroupMutation",
     "operationKind": "mutation",
-    "text": "mutation GroupsPanelCreateGroupMutation(\n  $newGroupName: String!\n  $userIds: [Uuid!]!\n) {\n  createGroup(input: {groupName: $newGroupName, userIds: $userIds}) {\n    group {\n      id\n      name\n      users {\n        id\n        username\n        email\n      }\n    }\n  }\n}\n"
+    "text": "mutation GroupsPanelCreateGroupMutation(\n  $newGroupName: String!\n  $userIds: [ID!]!\n) {\n  createGroup(input: {groupName: $newGroupName, userIds: $userIds}) {\n    group {\n      id\n      name\n      users {\n        id\n        username\n        email\n      }\n    }\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = '0be46053452c2b764d1dd4f4244851d8';
+(node as any).hash = '7f0db7d48e4a9e6a70d877789b2af37c';
 export default node;
