@@ -20,22 +20,22 @@
   border-radius: 0.5em;
   border: none;
   outline: none;
-  font-size: 0.6em;
+  font-size: 0.6rem;
 }
 
 .form input[type="text"],
 .form input[type="password"] {
-  padding: 0 0 0 0.5em;
+  padding: 0 0 0 0.6em;
 }
 
 .formItem {
   display: flex;
   flex-direction: column;
   color: gray;
-  padding-top: 1em;
+  padding-top: 1.8em;
 }
 
-.formItem label {
+.formItem {
   font-size: 0.6em;
 }
 

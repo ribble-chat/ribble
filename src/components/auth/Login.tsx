@@ -66,7 +66,6 @@ const Login: React.FC = () => {
 
   async function handleLogin(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    // (await api.login(username, password)).map(setCurrentUser).mapErr(toast.error);
     commit({
       variables: { usernameOrEmail, password },
       onCompleted: handleLoginResponse,
