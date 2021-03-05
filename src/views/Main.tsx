@@ -1,7 +1,7 @@
 import { UtilPanel } from "components";
 import { Route, Switch } from "react-router-dom";
 
-import { ChatView } from "components/chat";
+import ChatView from "./ChatView";
 import { Contacts } from "components/contacts";
 import { Preferences } from "components/preferences";
 import { CenterPopup } from "components/common";
