@@ -24,6 +24,7 @@
     "react-relay": "^0.0.0-experimental-4c4107dd",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.2",
+    "react-spinners": "^0.10.6",
     "react-toastify": "^7.0.3",
     "recoil": "^0.1.2",
     "relay-hooks": "^4.1.1",
