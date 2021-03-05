@@ -55,12 +55,8 @@ const Login: React.FC = () => {
     _errors: PayloadError[]
   ) {
     switch (res.login.__typename) {
-      case "LoginSuccess": {
-        const { user } = res.login;
-        setCurrentUser(user);
-        setUserGroupOverviews(user.groups);
-        break;
-      }
+      case "LoginSuccess":
+        return setCurrentUser(res.login.user);
       case "LoginUnknownUserError":
         return void toast.error(`Unknown username or email ${usernameOrEmail}`);
       case "LoginIncorrectPasswordError":

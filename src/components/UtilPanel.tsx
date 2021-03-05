@@ -30,7 +30,7 @@ const UtilPanel: React.FC = () => {
   const logoutButton: PanelItem = {
     name: "logout",
     icon: "fas fa-sign-out-alt",
-    action: () => setUser(undefined),
+    action: () => setUser(undefined!),
   };
   return (
     <aside className={styles.container}>
