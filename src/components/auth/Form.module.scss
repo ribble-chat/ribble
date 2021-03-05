@@ -8,6 +8,10 @@
   background-color: var(--ribble-accent-light);
 }
 
+.submitButton[disabled] {
+  background-color: var(--disabled-button-bg);
+}
+
 .form {
   display: flex;
   flex-direction: column;

@@ -51,7 +51,13 @@ const Register: React.FC = () => {
 
   // server does further validation, but could do more here also
   function isValid(): boolean {
-    return score > 2 && password === confirmedPassword;
+    // add email check
+    return score > 2 && password === confirmedPassword && isValidEmail(email);
+  }
+
+  function isValidEmail(email: string): boolean {
+    const regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return regex.test(email);
   }
 
   return (
