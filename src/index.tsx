@@ -1,15 +1,32 @@
-import React from "react";
+import React, { Suspense } from "react";
 import ReactDOM from "react-dom";
 import "./index.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { RecoilRoot } from "recoil";
+import { BrowserRouter } from "react-router-dom";
+import RecoilLogger from "recoil-logger";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { RelayEnvironmentProvider } from "react-relay/hooks";
+import Modal from "react-modal";
+import RelayEnvironment from "./relay";
+import { Loading } from "components";
 
+Modal.setAppElement("#root");
 ReactDOM.render(
   <React.StrictMode>
-    <RecoilRoot>
-      <App />
-    </RecoilRoot>
+    <BrowserRouter>
+      <RecoilRoot>
+        <RelayEnvironmentProvider environment={RelayEnvironment}>
+          <Suspense fallback={<Loading />}>
+            <RecoilLogger />
+            <ToastContainer />
+            <App />
+          </Suspense>
+        </RelayEnvironmentProvider>
+      </RecoilRoot>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );

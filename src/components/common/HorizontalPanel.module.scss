@@ -1,0 +1,13 @@
+@import "index.scss";
+.selected {
+  @extend .iconButton;
+  color: var(--ribble-accent-light);
+}
+
+.selected:hover {
+  color: var(--ribble-accent-light);
+}
+
+.items button {
+  padding-right: 1em;
+}

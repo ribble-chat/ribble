@@ -1,0 +1,38 @@
+@import "index.scss";
+.popupOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popupContent {
+  background-color: var(--popup-window-bg);
+  padding: 0.5em;
+  border-radius: 0.5em;
+  display: flex;
+  flex-direction: column;
+  outline: none;
+}
+
+.contentContainer {
+  box-sizing: border-box;
+  padding: 1em;
+}
+
+.closeButton {
+  @extend .iconButton;
+  margin-left: auto;
+  padding-right: 0.3em;
+  font-size: 1em;
+  color: gray;
+}
+
+.closeButton:hover {
+  color: darkgray;
+}

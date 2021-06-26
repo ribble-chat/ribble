@@ -1,10 +1,10 @@
-#container {
+.container {
   background-color: var(--chat-box-bg);
+  height: 100%;
   display: flex;
   flex: 1;
   flex-direction: column-reverse;
   overflow-y: scroll;
-  position: relative;
   box-sizing: border-box;
   padding: 0.6em;
 }

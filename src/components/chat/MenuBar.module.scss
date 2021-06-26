@@ -1,31 +1,37 @@
-#container {
+.container {
   margin-bottom: auto;
   height: var(--top-bar-height);
+  min-height: var(--top-bar-height);
   color: white;
   background-color: var(--bar-bg);
   display: flex;
   align-items: center;
+  border-bottom: solid;
+  border-width: thin;
+  border-color: var(--chat-box-border-line-col);
 }
 
-#groupTitle {
+.groupTitle {
   display: flex;
   padding-left: 0.05em;
 }
 
-#groupName {
+.groupName {
   padding-top: 0.4em;
   font-size: 1.1em;
   font-weight: bold;
   color: white;
 }
 
-#utilButtons {
+.panelContainer {
   margin-left: auto;
   margin-right: 0.2em;
 }
 
+@import "index.scss";
 .groupPicture {
-  width: 2.7em;
-  height: 2.7em;
+  @extend .groupPicture;
+  width: 2.3em;
+  height: 2.3em;
   padding: 1em;
 }

@@ -1,6 +1,8 @@
 import { useRecoilState } from "recoil";
-import { groupState } from "state";
+import { currentGroupAtom } from "state";
+
 import type { Group } from "types";
+
 import styles from "./GroupItem.module.scss";
 
 type Props = {
@@ -8,11 +10,15 @@ type Props = {
 };
 
 const GroupItem: React.FC<Props> = ({ group }) => {
-  const [currentGroup, setGroup] = useRecoilState(groupState);
+  const [currentGroup, setGroup] = useRecoilState(currentGroupAtom);
+  let style = currentGroup && group.id === currentGroup.id && styles.selected;
   return (
-    <div className={styles.container} onClick={() => setGroup(group)}>
+    <div
+      className={`${styles.container} ${style}`}
+      onClick={() => setGroup(group)}
+    >
       <img
-        className={`groupPicture ${styles.groupPicture}`}
+        className={styles.groupPicture}
         src={`./images/${group.picture}`}
         alt="profile"
       />

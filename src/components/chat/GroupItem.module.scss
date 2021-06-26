@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: var(--group-item-height);
+  box-sizing: border-box;
+  padding: 0.3em 0 0.3em 0.7em;
+  border-left: solid;
+  border-color: transparent;
+}
+
+@import "index.scss";
+.groupPicture {
+  @extend .groupPicture;
+  width: 2.3em;
+  height: 2.3em;
+}
+
+.groupName {
+  color: white;
+  font-size: 0.9em;
+  padding-left: 1em;
+}
+
+.selected {
+  background-color: var(--selected-group-bg);
+  border-left: solid;
+  border-color: var(--ribble-accent-col);
+}

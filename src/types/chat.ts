@@ -1,13 +1,17 @@
+import { Guid } from "types";
+
 export type Group = {
-  id: number;
+  id: Guid;
   name: string;
-  picture: string;
+  userIds: number[];
+  picture?: string;
 };
 
 export type Msg = {
-  id: number;
-  from: string;
-  to: string;
+  id: Guid;
+  authorId: Guid;
+  authorName: string;
+  groupId: Guid;
   content: string;
-  time?: number;
+  timestamp: Date;
 };

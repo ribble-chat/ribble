@@ -1,6 +1,9 @@
-#container {
-  height: 100%;
-  width: 100%;
+.container {
+  height: 100vh;
+  width: 100vw;
   display: flex;
   overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }

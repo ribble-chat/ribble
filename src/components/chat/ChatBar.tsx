@@ -1,38 +1,49 @@
 import { useState } from "react";
 import { useRecoilValue } from "recoil";
-import { groupState } from "state";
-import * as api from "api";
+import { currentGroupAtom, userAtom } from "state";
+
 import styles from "./ChatBar.module.scss";
+import { useChathubConnection } from "api";
 
 const ChatBar: React.FC = () => {
-  const emoji: string = "nibbles.png";
-
+  const hub = useChathubConnection();
   const [message, setMessage] = useState("");
-  const group = useRecoilValue(groupState);
+  const group = useRecoilValue(currentGroupAtom)!;
+  const user = useRecoilValue(userAtom)!;
 
-  function sendMessage() {
+  function sendEmoji() {}
+
+  function sendMessage(e: any) {
+    e.preventDefault();
     if (message === "") return;
-    api.sendMessageToGroup(group!.name, message);
+    hub.sendChatMessage({
+      authorId: user.id,
+      authorName: user.username,
+      groupId: group.id,
+      content: message,
+    });
+    setMessage("");
   }
 
   return (
-    <div id={styles.container}>
-      <button id={styles.addButton} className="iconButton">
+    <div className={styles.container}>
+      <button className="iconButton">
         <i className="fas fa-plus-circle" />
       </button>
-      <input
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-        id={styles.chatForm}
-        type="text"
-        placeholder="type a message..."
-      />
-      <img
-        id={styles.emojiButton}
-        src={`./images/${emoji}`}
-        alt="emoji"
-        onClick={sendMessage}
-      />
+      <form onSubmit={sendMessage}>
+        <input
+          className={styles.chatForm}
+          value={message}
+          onChange={e => setMessage(e.target.value)}
+          type="text"
+          placeholder={`Message ${group.name}`}
+        />
+      </form>
+      <div className={styles.emojiButtonContainer}>
+        <button className={styles.emojiButton} onClick={sendEmoji}>
+          <i className="fas fa-carrot" />
+        </button>
+      </div>
     </div>
   );
 };

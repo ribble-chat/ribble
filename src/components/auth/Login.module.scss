@@ -1,0 +1,6 @@
+@import "./Form.module.scss";
+
+.container {
+  @extend .formContainer;
+  margin-top: 3.73em;
+}

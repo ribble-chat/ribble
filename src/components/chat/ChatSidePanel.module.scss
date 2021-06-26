@@ -1,0 +1,29 @@
+@import "index.scss";
+
+.container {
+  display: block;
+  min-width: 13em;
+}
+
+.titleBar {
+  height: var(--top-bar-height);
+  background-color: var(--chat-side-panel-bg);
+  display: flex;
+  align-items: center;
+  border-bottom: solid;
+  border-width: thin;
+  border-color: var(--chat-box-border-line-col);
+}
+
+.titleBar h4 {
+  color: white;
+  font-size: 0.9em;
+  padding-left: 1em;
+}
+
+.backButton {
+  @extend .iconButton;
+  padding-left: 1em;
+  font-size: 1em;
+  color: grey;
+}

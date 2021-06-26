@@ -1,18 +1,12 @@
-import "./App.css";
-import { Main, Authentication } from "views";
-import styles from "./App.module.scss";
 import { useRecoilValue } from "recoil";
-import { userState } from "state";
+import { Main, Authentication } from "views";
+import { userAtom } from "state";
+import styles from "./App.module.scss";
 
 function App() {
-  //const [count, setCount] = useState<number>(0);
-  //function handleClick() {
-  //setCount((count) => count + 1);
-  //console.log(count);
-  //}
-  const currentUser = useRecoilValue(userState);
+  const currentUser = useRecoilValue(userAtom);
   return (
-    <div id={styles.container}>
+    <div className={styles.container}>
       {currentUser ? <Main /> : <Authentication />}
     </div>
   );

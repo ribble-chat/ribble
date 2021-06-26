@@ -1,4 +1,8 @@
+import { Group, Guid } from "types";
+
 export type User = {
-  id: number;
-  name: string;
+  id: Guid;
+  username: string;
+  email: string;
+  groups: Group[];
 };
